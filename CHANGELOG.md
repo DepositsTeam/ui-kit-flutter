@@ -6,3 +6,7 @@
 
 * add flag to hide/show password strength in password input
 * add flag to manage button text font weight
+
+## 0.0.3
+
+* use image widget for avatar images

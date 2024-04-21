@@ -86,48 +86,52 @@ class DepositsImageAvatar extends StatelessWidget {
       height = AppDimens.height32;
       width = AppDimens.height32;
     }
-    var imageType = '';
-    if (imagePath.contains("https://") == true ||
-        imagePath.contains("http://") == true) {
-      imageType = 'live';
-    } else {
-      imageType = 'local';
-    }
-    if (imagePath.contains(".svg") == true) {
-      imageType = '${imageType}_svg';
-    } else {
-      imageType = '${imageType}_not_svg';
-    }
-    var imageWidget = Container();
-    if (imageType == 'local_not_svg') {
-      imageWidget = Container(
-        child: Image.asset(
-          imagePath,
-          height: height,
-        ),
-      );
-    } else if (imageType == 'local_svg') {
-      imageWidget = Container(
-        child: SvgPicture.asset(
-          imagePath,
-          height: height,
-        ),
-      );
-    } else if (imageType == 'live_not_svg') {
-      imageWidget = Container(
-        child: Image.network(
-          imagePath,
-          height: height,
-        ),
-      );
-    } else if (imageType == 'live_svg') {
-      imageWidget = Container(
-        child: SvgPicture.network(
-          imagePath,
-          height: height,
-        ),
-      );
-    }
+    // var imageType = '';
+    // if (imagePath.contains("https://") == true ||
+    //     imagePath.contains("http://") == true) {
+    //   imageType = 'live';
+    // } else {
+    //   imageType = 'local';
+    // }
+    // if (imagePath.contains(".svg") == true) {
+    //   imageType = '${imageType}_svg';
+    // } else {
+    //   imageType = '${imageType}_not_svg';
+    // }
+    var imageWidget = ImageWidget(
+      imageUrl: imagePath,
+      imageHeight: height,
+      imageWidth: width,
+    );
+    // if (imageType == 'local_not_svg') {
+    //   imageWidget = Container(
+    //     child: Image.asset(
+    //       imagePath,
+    //       height: height,
+    //     ),
+    //   );
+    // } else if (imageType == 'local_svg') {
+    //   imageWidget = Container(
+    //     child: SvgPicture.asset(
+    //       imagePath,
+    //       height: height,
+    //     ),
+    //   );
+    // } else if (imageType == 'live_not_svg') {
+    //   imageWidget = Container(
+    //     child: Image.network(
+    //       imagePath,
+    //       height: height,
+    //     ),
+    //   );
+    // } else if (imageType == 'live_svg') {
+    //   imageWidget = Container(
+    //     child: SvgPicture.network(
+    //       imagePath,
+    //       height: height,
+    //     ),
+    //   );
+    // }
     Widget result = Container(
       height: height,
       width: width,

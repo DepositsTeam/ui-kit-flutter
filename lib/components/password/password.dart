@@ -12,6 +12,7 @@ class DepositsPasswordInput extends StatefulWidget {
   final DepositsFormStates formState;
   final bool readOnly;
   final Color? bgColor;
+  final bool showPasswordStrengthSection;
   final Function onChanged;
 
   const DepositsPasswordInput(
@@ -24,6 +25,7 @@ class DepositsPasswordInput extends StatefulWidget {
       this.formState = DepositsFormStates.normal,
       this.readOnly = false,
       this.bgColor,
+      this.showPasswordStrengthSection = true,
       required this.onChanged});
 
   @override
@@ -319,56 +321,63 @@ class DepositsPasswordInputState extends State<DepositsPasswordInput> {
               )
             : Container(
                 padding: const EdgeInsets.symmetric(vertical: 5.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                            child: Row(
-                          children: [
-                            TextCustom(
-                              text: passwordStrengthText,
-                              textFontSize: AppDimens.fontSize12,
-                              color: passwordStrengthTextColor,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: DepositsFontFamilies.SFProText,
-                            )
-                          ],
-                        )),
-                        Expanded(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Row(
-                              children: [
-                                PasswordStrength(
-                                    color: passwordStrengthIconColorOne)
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                PasswordStrength(
-                                    color: passwordStrengthIconColorTwo)
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                PasswordStrength(
-                                    color: passwordStrengthIconColorThree)
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                PasswordStrength(
-                                    color: passwordStrengthIconColorFour)
-                              ],
-                            ),
-                          ],
-                        )),
-                      ],
-                    )
-                  ],
-                ),
+                child: widget.showPasswordStrengthSection == false
+                    ? Container()
+                    : Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    TextCustom(
+                                      text: passwordStrengthText,
+                                      textFontSize: AppDimens.fontSize12,
+                                      color: passwordStrengthTextColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily:
+                                          DepositsFontFamilies.SFProText,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        PasswordStrength(
+                                            color: passwordStrengthIconColorOne)
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        PasswordStrength(
+                                            color: passwordStrengthIconColorTwo)
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        PasswordStrength(
+                                            color:
+                                                passwordStrengthIconColorThree)
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        PasswordStrength(
+                                            color:
+                                                passwordStrengthIconColorFour)
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
               ),
       ],
     );

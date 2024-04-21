@@ -12,6 +12,7 @@ class DepositsButtonWithIconWidget extends StatefulWidget {
   final DepositsButtonStates state;
   final DepositsButtonTypes buttonType;
   final Widget iconWidget;
+  final FontWeight buttonTextFontWeight;
   final Function onPressed;
 
   const DepositsButtonWithIconWidget({
@@ -24,6 +25,7 @@ class DepositsButtonWithIconWidget extends StatefulWidget {
     this.state = DepositsButtonStates.normal,
     this.buttonType = DepositsButtonTypes.normal,
     required this.iconWidget,
+    this.buttonTextFontWeight = FontWeight.w600,
     required this.onPressed,
   });
 
@@ -161,7 +163,8 @@ class DepositsButtonWithIconWidgetState
                                 ),
                               )
                             ],
-                          ))
+                          ),
+                        )
                       : Container(),
                   Expanded(
                     flex: 10,
@@ -179,7 +182,7 @@ class DepositsButtonWithIconWidgetState
                                   DepositsFontFamilies.SFProDisplay.toString(),
                               fontSize: textFontSize,
                               color: textColor,
-                              fontWeight: FontWeight.w600),
+                              fontWeight: widget.buttonTextFontWeight),
                         ),
                       ],
                     ),
@@ -218,6 +221,7 @@ class DepositsButtonWidget extends StatefulWidget {
   final DepositsButtonSize size;
   final DepositsButtonStates state;
   final DepositsButtonTypes buttonType;
+  final FontWeight buttonTextFontWeight;
   final Function onPressed;
 
   const DepositsButtonWidget({
@@ -229,6 +233,7 @@ class DepositsButtonWidget extends StatefulWidget {
     this.size = DepositsButtonSize.large,
     this.state = DepositsButtonStates.normal,
     this.buttonType = DepositsButtonTypes.normal,
+    this.buttonTextFontWeight = FontWeight.w600,
     required this.onPressed,
   });
 
@@ -242,15 +247,17 @@ class DepositsButtonWidgetState extends State<DepositsButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return DepositsButtonWithIconWidget(
-        text: widget.text,
-        textColor: widget.textColor,
-        bgColor: widget.bgColor,
-        borderColor: widget.borderColor,
-        size: widget.size,
-        state: widget.state,
-        buttonType: widget.buttonType,
-        iconWidget: Container(),
-        onPressed: widget.onPressed);
+      text: widget.text,
+      textColor: widget.textColor,
+      bgColor: widget.bgColor,
+      borderColor: widget.borderColor,
+      size: widget.size,
+      state: widget.state,
+      buttonType: widget.buttonType,
+      buttonTextFontWeight: widget.buttonTextFontWeight,
+      iconWidget: Container(),
+      onPressed: widget.onPressed,
+    );
   }
 }
 

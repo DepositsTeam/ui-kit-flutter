@@ -121,7 +121,7 @@ class DepositsContentCardOneState extends State<DepositsContentCardOne> {
                   child: Container(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: const Icon(
-                      Icons.arrow_forward_ios,
+                      Icons.keyboard_arrow_right,
                       color: AppColors.neutral500Color,
                     ),
                   ),
@@ -258,7 +258,7 @@ class DepositsContentCardTwoState extends State<DepositsContentCardTwo> {
                   child: Container(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Icon(
-                      Icons.arrow_forward_ios,
+                      Icons.keyboard_arrow_right,
                       color: widget.arrowColor,
                     ),
                   ),
@@ -356,7 +356,7 @@ class DepositsContentLabelOneState extends State<DepositsContentLabelOne> {
                   child: Container(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Icon(
-                      Icons.arrow_forward_ios,
+                      Icons.keyboard_arrow_right,
                       color: widget.arrowColor,
                     ),
                   ),
@@ -542,12 +542,17 @@ class DepositsContentLabelThreeState extends State<DepositsContentLabelThree> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Container(
-                    padding: const EdgeInsets.only(right: 5.0),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: widget.arrowColor,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(right: 0.0),
+                        child: Icon(
+                          Icons.keyboard_arrow_right,
+                          color: widget.arrowColor,
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ],
@@ -667,7 +672,7 @@ class DepositsContentLabelFourState extends State<DepositsContentLabelFour> {
                   child: Container(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Icon(
-                      Icons.arrow_forward_ios,
+                      Icons.keyboard_arrow_right,
                       color: widget.arrowColor,
                     ),
                   ),
@@ -1173,7 +1178,7 @@ class DepositsContentListOneState extends State<DepositsContentListOne> {
         allowHorinzontalPadding: widget.allowHorinzontalPadding,
         rightWidgetExpandSize: 2,
         rightWidget: Icon(
-          Icons.arrow_forward_ios,
+          Icons.keyboard_arrow_right,
           color: widget.arrowColor,
         ),
         onTapped: widget.onTapped);
@@ -1286,7 +1291,7 @@ class DepositsContentListThreeState extends State<DepositsContentListThree> {
               child: DepositsSubheadText(text: widget.arrowText),
             ),
             Icon(
-              Icons.arrow_forward_ios,
+              Icons.keyboard_arrow_right,
               color: widget.arrowColor,
             )
           ],
@@ -1350,7 +1355,7 @@ class DepositsContentListFourState extends State<DepositsContentListFour> {
                   textColor: widget.badgeTextColor),
             ),
             Icon(
-              Icons.arrow_forward_ios,
+              Icons.keyboard_arrow_right,
               color: widget.arrowColor,
             )
           ],
@@ -1525,7 +1530,7 @@ class DepositsContentListSevenState extends State<DepositsContentListSeven> {
                   textColor: widget.badgeTextColor),
             ),
             Icon(
-              Icons.arrow_forward_ios,
+              Icons.keyboard_arrow_right,
               color: widget.arrowColor,
             )
           ],
@@ -1729,7 +1734,7 @@ class DepositsContentListTenState extends State<DepositsContentListTen> {
                   ),
                 ),
                 Icon(
-                  Icons.arrow_forward_ios,
+                  Icons.keyboard_arrow_right,
                   color: widget.arrowColor,
                 )
               ],

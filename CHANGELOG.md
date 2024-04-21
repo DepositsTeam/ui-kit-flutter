@@ -14,3 +14,8 @@
 ## 0.0.4
 
 * add errorWidget to image.asset option in image widget
+
+## 0.0.5
+
+* align icon in DepositsContentLabelThree to the right
+* change all arrow_forward_ios icons to keyboard_arrow_right icons

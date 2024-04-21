@@ -41,9 +41,12 @@ class DepositsBottomsheetState extends State<DepositsBottomsheet> {
   Widget build(BuildContext context) {
     Widget result = Container(
       decoration: BoxDecoration(
-          color: widget.bgColor,
-          borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(10.0), topLeft: Radius.circular(10.0))),
+        color: widget.bgColor,
+        borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(10.0),
+          topLeft: Radius.circular(10.0),
+        ),
+      ),
       child: Column(
         children: [
           Container(
@@ -207,96 +210,12 @@ class DepositsBottomsheetOneState extends State<DepositsBottomsheetOne> {
         : Container();
     Widget bodyWidget = widget.body;
     Widget result = DepositsBottomsheet(
-        titleWidget: titleWidget,
-        titleLeftWidget: titleLeftWidget,
-        titleRightWidget: titleRightWidget,
-        bodyWidget: bodyWidget,
-        bgColor: widget.bgColor);
-    // Widget result = Column(
-    //   children: [
-    //     Container(
-    //       padding: const EdgeInsets.symmetric(vertical: 2.0),
-    //       child: Row(
-    //         children: [
-    //           Container(
-    //             width: 36.0,
-    //             height: 5.0,
-    //             decoration: BoxDecoration(
-    //                 color: AppColors.neutral300Color,
-    //                 borderRadius: BorderRadius.circular(100)),
-    //           )
-    //         ],
-    //       ),
-    //     ),
-    //     Container(
-    //       padding: const EdgeInsets.symmetric(vertical: 2.0),
-    //       child: Column(
-    //         children: [
-    //           Row(
-    //             children: [
-    //               Row(
-    //                 children: [
-    //                   Container(
-    //                     child: Column(children: [
-    //                       Row(
-    //                         children: [
-    //                           Row(
-    //                             children: [
-    //                               Container(
-    //                                 padding: const EdgeInsets.only(right: 3.0),
-    //                                 child: const Icon(
-    //                                   Icons.arrow_back_ios,
-    //                                   color: AppColors.secondaryColor,
-    //                                 ),
-    //                               )
-    //                             ],
-    //                           ),
-    //                           const Row(
-    //                             children: [
-    //                               TextCustom(
-    //                                 text: "Left Title",
-    //                                 textFontSize: AppDimens.fontSize17,
-    //                                 color: AppColors.secondaryColor,
-    //                                 fontWeight: FontWeight.w400,
-    //                                 fontFamily: DepositsFontFamilies.SFProText,
-    //                               )
-    //                             ],
-    //                           )
-    //                         ],
-    //                       )
-    //                     ]),
-    //                   )
-    //                 ],
-    //               ),
-    //               const Expanded(
-    //                   child: TextCustom(
-    //                 text: "Title",
-    //                 textFontSize: AppDimens.fontSize17,
-    //                 color: AppColors.secondaryColor,
-    //                 fontWeight: FontWeight.w600,
-    //                 fontFamily: DepositsFontFamilies.SFProText,
-    //               )),
-    //               Row(
-    //                 children: [
-    //                   Container(
-    //                     padding: const EdgeInsets.only(left: 0.0),
-    //                     child: const Icon(
-    //                       Icons.cancel,
-    //                       color: AppColors.neutral100Color,
-    //                     ),
-    //                   )
-    //                 ],
-    //               )
-    //             ],
-    //           )
-    //         ],
-    //       ),
-    //     ),
-    //     Column(
-    //       children: [widget.body],
-    //     )
-    //   ],
-    // );
+      titleWidget: titleWidget,
+      titleLeftWidget: titleLeftWidget,
+      titleRightWidget: titleRightWidget,
+      bodyWidget: bodyWidget,
+      bgColor: widget.bgColor,
+    );
     return result;
   }
 }

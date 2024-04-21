@@ -805,7 +805,7 @@ class DepositsDetailsStackOneState extends State<DepositsDetailsStackOne> {
                         vertical: 0.0,
                       ),
                       child: const Icon(
-                        Icons.arrow_forward_ios,
+                        Icons.keyboard_arrow_right,
                         color: AppColors.neutral500Color,
                         size: 20.0,
                       ),
@@ -878,7 +878,7 @@ class DepositsDetailsStackTwoState extends State<DepositsDetailsStackTwo> {
                         vertical: 3.0,
                       ),
                       child: const Icon(
-                        Icons.arrow_forward_ios,
+                        Icons.keyboard_arrow_right,
                         color: AppColors.neutral500Color,
                         size: 20.0,
                       ),

@@ -445,7 +445,7 @@ class DepositsListCardAccountOneState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       child: const Icon(
-                        Icons.arrow_forward_ios,
+                        Icons.keyboard_arrow_right,
                         color: AppColors.neutral500Color,
                       ),
                     ),
@@ -514,7 +514,7 @@ class DepositsListCardAccountTwoState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       child: const Icon(
-                        Icons.arrow_forward_ios,
+                        Icons.keyboard_arrow_right,
                         color: AppColors.neutral500Color,
                       ),
                     ),
@@ -872,7 +872,7 @@ class DepositsListCardAccountSixState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       child: const Icon(
-                        Icons.arrow_forward_ios,
+                        Icons.keyboard_arrow_right,
                         color: AppColors.neutral500Color,
                       ),
                     ),

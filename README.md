@@ -11,8 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+The Deposits UI Kit is a collection of reusable, fully themeable and customizable UI components. It includes a lot of the basics as well as amazing components tied to Fintech applications that can help drastically reduce development time. It can help improve development time and increase consistency in your fintech applications.
 
 ## Features
 
@@ -38,10 +37,3 @@ TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
 
-
-File links
-[
-    "https://api.files.ondeposits.com/uploads/images/master-card-icon-1712828073.png",
-    "https://api.files.ondeposits.com/uploads/images/your-brand-icon-1712828351.png",
-    "https://api.files.ondeposits.com/uploads/images/your-brand-white-1712840364.png",
-]

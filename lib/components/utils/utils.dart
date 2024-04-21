@@ -116,8 +116,18 @@ class ImageWidget extends StatelessWidget {
             width: imageWidth,
             height: imageHeight,
           ),
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          placeholder: (context, url) => Container(
+            padding: const EdgeInsets.all(
+              2.0,
+            ),
+            child: const CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, error) => Container(
+            padding: const EdgeInsets.all(
+              2.0,
+            ),
+            child: const Icon(Icons.error),
+          ),
         );
       } else {
         // widget = Image.network(
@@ -133,10 +143,18 @@ class ImageWidget extends StatelessWidget {
             width: imageWidth,
             height: imageHeight,
           ),
-          placeholder: (context, url) => const CircularProgressIndicator(
-            color: AppColors.blue400Color,
+          placeholder: (context, url) => Container(
+            padding: const EdgeInsets.all(
+              2.0,
+            ),
+            child: const CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          errorWidget: (context, url, error) => Container(
+            padding: const EdgeInsets.all(
+              2.0,
+            ),
+            child: const Icon(Icons.error),
+          ),
         );
       }
     } else {
@@ -151,6 +169,14 @@ class ImageWidget extends StatelessWidget {
           imageUrl,
           width: imageWidth,
           height: imageHeight,
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              padding: const EdgeInsets.all(2.0),
+              child: const Icon(
+                Icons.error,
+              ),
+            );
+          },
           // color: color,
         );
       }

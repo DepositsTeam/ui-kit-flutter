@@ -10,3 +10,7 @@
 ## 0.0.3
 
 * use image widget for avatar images
+
+## 0.0.4
+
+* add errorWidget to image.asset option in image widget

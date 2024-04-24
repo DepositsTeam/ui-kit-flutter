@@ -803,70 +803,72 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
               const VSpacerWidget(size: 10.0),
               const DepositsH4Text(text: "CARD DETAILS"),
               const VSpacerWidget(size: 10.0),
-              DepositsDetailsCardOne(items: [
-                DepositsCardDetailModel(
-                  title: "Card PAN",
-                  subtitle: "5399 0123 4567 8901",
-                  showVisibleIcon: true,
-                  isVisible: false,
-                  showCopyIcon: true,
-                  showCenterWidget: false,
-                  centerWidget: Container(),
-                ),
-                DepositsCardDetailModel(
-                  title: "Card Expiry",
-                  subtitle: "09 / **",
-                  showVisibleIcon: true,
-                  isVisible: false,
-                  showCopyIcon: true,
-                  showCenterWidget: false,
-                  centerWidget: Container(),
-                ),
-                DepositsCardDetailModel(
-                  title: "CVV",
-                  subtitle: "539",
-                  showVisibleIcon: true,
-                  isVisible: false,
-                  showCopyIcon: true,
-                  showCenterWidget: false,
-                  centerWidget: Container(),
-                ),
-                DepositsCardDetailModel(
-                  title: "Card PIN",
-                  subtitle: "5399",
-                  showVisibleIcon: true,
-                  isVisible: false,
-                  showCopyIcon: true,
-                  showCenterWidget: true,
-                  centerWidget: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 5.0,
-                      vertical: 2.0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.neutral100Color,
-                      border: Border.all(
-                        width: 1.0,
-                        color: AppColors.neutral200Color,
+              DepositsDetailsCardOne(
+                items: [
+                  DepositsCardDetailModel(
+                    title: "Card PAN",
+                    subtitle: "5399 0123 4567 8901",
+                    showVisibleIcon: true,
+                    isVisible: false,
+                    showCopyIcon: true,
+                    showCenterWidget: false,
+                    centerWidget: Container(),
+                  ),
+                  DepositsCardDetailModel(
+                    title: "Card Expiry",
+                    subtitle: "09 / **",
+                    showVisibleIcon: true,
+                    isVisible: false,
+                    showCopyIcon: true,
+                    showCenterWidget: false,
+                    centerWidget: Container(),
+                  ),
+                  DepositsCardDetailModel(
+                    title: "CVV",
+                    subtitle: "539",
+                    showVisibleIcon: true,
+                    isVisible: false,
+                    showCopyIcon: true,
+                    showCenterWidget: false,
+                    centerWidget: Container(),
+                  ),
+                  DepositsCardDetailModel(
+                    title: "Card PIN",
+                    subtitle: "5399",
+                    showVisibleIcon: true,
+                    isVisible: false,
+                    showCopyIcon: true,
+                    showCenterWidget: true,
+                    centerWidget: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0,
+                        vertical: 2.0,
                       ),
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    child: const DepositsFootnoteText(
-                      text: "Change PIN",
-                      color: AppColors.textPrimaryColor,
+                      decoration: BoxDecoration(
+                        color: AppColors.neutral100Color,
+                        border: Border.all(
+                          width: 1.0,
+                          color: AppColors.neutral200Color,
+                        ),
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                      child: const DepositsFootnoteText(
+                        text: "Change PIN",
+                        color: AppColors.textPrimaryColor,
+                      ),
                     ),
                   ),
-                ),
-                DepositsCardDetailModel(
-                  title: "Billing address",
-                  subtitle: "Suite 102 Gary Levin Avenue, Bay Area, CA",
-                  showVisibleIcon: false,
-                  isVisible: true,
-                  showCopyIcon: true,
-                  showCenterWidget: false,
-                  centerWidget: Container(),
-                )
-              ]),
+                  DepositsCardDetailModel(
+                    title: "Billing address",
+                    subtitle: "Suite 102 Gary Levin Avenue, Bay Area, CA",
+                    showVisibleIcon: false,
+                    isVisible: true,
+                    showCopyIcon: true,
+                    showCenterWidget: false,
+                    centerWidget: Container(),
+                  )
+                ],
+              ),
               const VSpacerWidget(size: 10.0),
               DepositsDetailsCardTwo(
                 title: "Your card details",
@@ -940,6 +942,7 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
               const VSpacerWidget(size: 10.0),
               DepositsDetailsMobileTable(
                 title: "My Cards",
+                onCardTapped: () {},
                 items: [
                   DepositsCardMobileTableModel(
                     card: "****4589",
@@ -967,6 +970,7 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
               DepositsDetailsMobileTable(
                 title: "My Accounts",
                 icon: Icons.account_balance,
+                onCardTapped: () {},
                 items: [
                   DepositsCardMobileTableModel(
                     card: "****4589",

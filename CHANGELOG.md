@@ -19,3 +19,11 @@
 
 * align icon in DepositsContentLabelThree to the right
 * change all arrow_forward_ios icons to keyboard_arrow_right icons
+
+## 0.0.6
+
+* add font size 23
+* fix outline button splash color
+* add form field active color to be a variable
+* add all form active color to be a variable
+* fix deposits checkbox state change bug

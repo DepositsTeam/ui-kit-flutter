@@ -3,7 +3,7 @@ import 'package:deposits_ui_kit_v2/resources/app_resources.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
 
-class CardWidget extends StatefulWidget {
+class DepositsCardWidgetUI extends StatefulWidget {
   final String name;
   final String balance;
   final String balanceTitle;
@@ -23,7 +23,7 @@ class CardWidget extends StatefulWidget {
   final bool showCardDetails;
   final Function onTapped;
 
-  const CardWidget(
+  const DepositsCardWidgetUI(
       {super.key,
       required this.name,
       required this.balance,
@@ -45,12 +45,12 @@ class CardWidget extends StatefulWidget {
       required this.onTapped});
 
   @override
-  CardWidgetState createState() {
-    return CardWidgetState();
+  DepositsCardWidgetUIState createState() {
+    return DepositsCardWidgetUIState();
   }
 }
 
-class CardWidgetState extends State<CardWidget> {
+class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
   var cardNameColor = AppColors.neutral600Color;
 
   bool showCardDetails = false;
@@ -251,82 +251,96 @@ class CardWidgetState extends State<CardWidget> {
             Container(
               padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
               decoration: BoxDecoration(
-                  border: Border(
-                      top: BorderSide(
-                          width: 0.5, color: widget.borderTopColor))),
+                border: Border(
+                  top: BorderSide(
+                    width: 0.5,
+                    color: widget.borderTopColor,
+                  ),
+                ),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
                       Expanded(
-                          flex: 5,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextCustom(
-                                  text: "Card number",
-                                  textFontSize: AppDimens.fontSize14,
-                                  color: widget.cardDetailsTitleColor,
-                                  fontWeight: FontWeight.w500),
-                              const VSpacerWidget(size: 2.0),
-                              TextCustom(
-                                  text: cardNumber,
-                                  textFontSize: AppDimens.fontSize14,
-                                  color: widget.cardDetailsColor,
-                                  fontWeight: FontWeight.w500),
-                            ],
-                          )),
+                        flex: 6,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustom(
+                              text: "Card number",
+                              textFontSize: AppDimens.fontSize14,
+                              color: widget.cardDetailsTitleColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            const VSpacerWidget(size: 2.0),
+                            TextCustom(
+                              text: cardNumber,
+                              textFontSize: AppDimens.fontSize14,
+                              color: widget.cardDetailsColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ],
+                        ),
+                      ),
                       Expanded(
-                          flex: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextCustom(
-                                  text: "EXP",
-                                  textFontSize: AppDimens.fontSize14,
-                                  color: widget.cardDetailsTitleColor,
-                                  fontWeight: FontWeight.w500),
-                              const VSpacerWidget(size: 2.0),
-                              TextCustom(
-                                  text: "$expiryMonth / $expiryYear",
-                                  textFontSize: AppDimens.fontSize14,
-                                  color: widget.cardDetailsColor,
-                                  fontWeight: FontWeight.w500),
-                            ],
-                          )),
+                        flex: 3,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustom(
+                              text: "EXP",
+                              textFontSize: AppDimens.fontSize14,
+                              color: widget.cardDetailsTitleColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            const VSpacerWidget(size: 2.0),
+                            TextCustom(
+                              text: "$expiryMonth / $expiryYear",
+                              textFontSize: AppDimens.fontSize14,
+                              color: widget.cardDetailsColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ],
+                        ),
+                      ),
                       Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextCustom(
-                                  text: "CVV",
-                                  textFontSize: AppDimens.fontSize14,
-                                  color: widget.cardDetailsTitleColor,
-                                  fontWeight: FontWeight.w500),
-                              const VSpacerWidget(size: 2.0),
-                              TextCustom(
-                                  text: cvv,
-                                  textFontSize: AppDimens.fontSize14,
-                                  color: widget.cardDetailsColor,
-                                  fontWeight: FontWeight.w500),
-                            ],
-                          )),
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextCustom(
+                              text: "CVV",
+                              textFontSize: AppDimens.fontSize14,
+                              color: widget.cardDetailsTitleColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            const VSpacerWidget(size: 2.0),
+                            TextCustom(
+                              text: cvv,
+                              textFontSize: AppDimens.fontSize14,
+                              color: widget.cardDetailsColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ],
+                        ),
+                      ),
                       Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              cardBrandLogo.isNotEmpty
-                                  ? ImageWidget(
-                                      imageUrl: cardBrandLogo,
-                                      imageHeight: 34.0,
-                                    )
-                                  : Container()
-                            ],
-                          ))
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            cardBrandLogo.isNotEmpty
+                                ? ImageWidget(
+                                    imageUrl: cardBrandLogo,
+                                    imageHeight: 34.0,
+                                  )
+                                : Container()
+                          ],
+                        ),
+                      )
                     ],
                   )
                 ],
@@ -340,7 +354,7 @@ class CardWidgetState extends State<CardWidget> {
   }
 }
 
-class CardWidgetBlack extends StatefulWidget {
+class DepositsCardWidgetUIBlack extends StatefulWidget {
   final String name;
   final String balance;
   final String balanceTitle;
@@ -353,7 +367,7 @@ class CardWidgetBlack extends StatefulWidget {
   final bool showCardDetails;
   final Function onTapped;
 
-  const CardWidgetBlack(
+  const DepositsCardWidgetUIBlack(
       {super.key,
       required this.name,
       required this.balance,
@@ -368,15 +382,15 @@ class CardWidgetBlack extends StatefulWidget {
       required this.onTapped});
 
   @override
-  CardWidgetBlackState createState() {
-    return CardWidgetBlackState();
+  DepositsCardWidgetUIBlackState createState() {
+    return DepositsCardWidgetUIBlackState();
   }
 }
 
-class CardWidgetBlackState extends State<CardWidgetBlack> {
+class DepositsCardWidgetUIBlackState extends State<DepositsCardWidgetUIBlack> {
   @override
   Widget build(BuildContext context) {
-    Widget result = CardWidget(
+    Widget result = DepositsCardWidgetUI(
         name: widget.name,
         showCardDetails: widget.showCardDetails,
         balance: widget.balance,
@@ -399,7 +413,7 @@ class CardWidgetBlackState extends State<CardWidgetBlack> {
   }
 }
 
-class CardWidgetWhite extends StatefulWidget {
+class DepositsCardWidgetUIWhite extends StatefulWidget {
   final String name;
   final String balance;
   final String balanceTitle;
@@ -412,7 +426,7 @@ class CardWidgetWhite extends StatefulWidget {
   final bool showCardDetails;
   final Function onTapped;
 
-  const CardWidgetWhite(
+  const DepositsCardWidgetUIWhite(
       {super.key,
       required this.name,
       required this.balance,
@@ -427,15 +441,15 @@ class CardWidgetWhite extends StatefulWidget {
       required this.onTapped});
 
   @override
-  CardWidgetWhiteState createState() {
-    return CardWidgetWhiteState();
+  DepositsCardWidgetUIWhiteState createState() {
+    return DepositsCardWidgetUIWhiteState();
   }
 }
 
-class CardWidgetWhiteState extends State<CardWidgetWhite> {
+class DepositsCardWidgetUIWhiteState extends State<DepositsCardWidgetUIWhite> {
   @override
   Widget build(BuildContext context) {
-    Widget result = CardWidget(
+    Widget result = DepositsCardWidgetUI(
         name: widget.name,
         showCardDetails: widget.showCardDetails,
         balance: widget.balance,
@@ -458,7 +472,7 @@ class CardWidgetWhiteState extends State<CardWidgetWhite> {
   }
 }
 
-class CardWidgetGrey extends StatefulWidget {
+class DepositsCardWidgetUIGrey extends StatefulWidget {
   final String name;
   final String balance;
   final String balanceTitle;
@@ -471,7 +485,7 @@ class CardWidgetGrey extends StatefulWidget {
   final bool showCardDetails;
   final Function onTapped;
 
-  const CardWidgetGrey(
+  const DepositsCardWidgetUIGrey(
       {super.key,
       required this.name,
       required this.balance,
@@ -486,15 +500,15 @@ class CardWidgetGrey extends StatefulWidget {
       required this.onTapped});
 
   @override
-  CardWidgetGreyState createState() {
-    return CardWidgetGreyState();
+  DepositsCardWidgetUIGreyState createState() {
+    return DepositsCardWidgetUIGreyState();
   }
 }
 
-class CardWidgetGreyState extends State<CardWidgetGrey> {
+class DepositsCardWidgetUIGreyState extends State<DepositsCardWidgetUIGrey> {
   @override
   Widget build(BuildContext context) {
-    Widget result = CardWidget(
+    Widget result = DepositsCardWidgetUI(
         name: widget.name,
         showCardDetails: widget.showCardDetails,
         balance: widget.balance,
@@ -517,7 +531,7 @@ class CardWidgetGreyState extends State<CardWidgetGrey> {
   }
 }
 
-class CardWidgetBlue extends StatefulWidget {
+class DepositsCardWidgetUIBlue extends StatefulWidget {
   final String name;
   final String balance;
   final String balanceTitle;
@@ -530,7 +544,7 @@ class CardWidgetBlue extends StatefulWidget {
   final bool showCardDetails;
   final Function onTapped;
 
-  const CardWidgetBlue(
+  const DepositsCardWidgetUIBlue(
       {super.key,
       required this.name,
       required this.balance,
@@ -545,15 +559,15 @@ class CardWidgetBlue extends StatefulWidget {
       required this.onTapped});
 
   @override
-  CardWidgetBlueState createState() {
-    return CardWidgetBlueState();
+  DepositsCardWidgetUIBlueState createState() {
+    return DepositsCardWidgetUIBlueState();
   }
 }
 
-class CardWidgetBlueState extends State<CardWidgetBlue> {
+class DepositsCardWidgetUIBlueState extends State<DepositsCardWidgetUIBlue> {
   @override
   Widget build(BuildContext context) {
-    Widget result = CardWidget(
+    Widget result = DepositsCardWidgetUI(
         name: widget.name,
         showCardDetails: widget.showCardDetails,
         balance: widget.balance,

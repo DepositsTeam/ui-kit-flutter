@@ -12,21 +12,30 @@ class DepositsPasswordInput extends StatefulWidget {
   final DepositsFormStates formState;
   final bool readOnly;
   final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final bool showPasswordStrengthSection;
   final Function onChanged;
 
-  const DepositsPasswordInput(
-      {super.key,
-      required this.title,
-      this.placeholder = "Enter password",
-      this.size = DepositsFormSizeStates.medium,
-      this.errorText = "",
-      this.initialValue,
-      this.formState = DepositsFormStates.normal,
-      this.readOnly = false,
-      this.bgColor,
-      this.showPasswordStrengthSection = true,
-      required this.onChanged});
+  const DepositsPasswordInput({
+    super.key,
+    required this.title,
+    this.placeholder = "Enter password",
+    this.size = DepositsFormSizeStates.medium,
+    this.errorText = "",
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.readOnly = false,
+    this.bgColor,
+    this.showPasswordStrengthSection = true,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    required this.onChanged,
+  });
 
   @override
   DepositsPasswordInputState createState() {
@@ -114,17 +123,18 @@ class DepositsPasswordInputState extends State<DepositsPasswordInput> {
 
       inputFontSize = AppDimens.fontSize16;
     }
+    borderColor = widget.borderColorNormal;
     fillColor = AppColors.transparentColor;
     if (formState == DepositsFormStates.active ||
         formState == DepositsFormStates.cursor) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
       placeholderTextColor = AppColors.neutral700Color;
       fillColor = AppColors.red150Color;
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       placeholderTextColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
       fillColor = AppColors.neutral200Color;
     }
   }

@@ -856,6 +856,9 @@ class DepositsCardBorderedThree extends StatefulWidget {
   final Color buttonBorderColor;
   final Color buttonBgColor;
   final Widget buttonIconWidget;
+  final Color topWidgetArrowColor;
+  final bool showProcessingWidget;
+  final bool showListSection;
   final Function onPressed;
   final Function onAccountChanged;
 
@@ -884,6 +887,9 @@ class DepositsCardBorderedThree extends StatefulWidget {
     this.buttonBorderColor = const Color(0xffDDF9F3),
     this.buttonBgColor = const Color(0xffDDF9F3),
     required this.buttonIconWidget,
+    this.topWidgetArrowColor = AppColors.transparentColor,
+    this.showProcessingWidget = true,
+    this.showListSection = true,
     required this.onPressed,
     required this.onAccountChanged,
   });
@@ -924,72 +930,80 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
             subtitleColor: widget.subtitleColor,
             image: widget.image,
             imageColor: widget.imageColor,
-            arrowColor: AppColors.transparentColor,
+            arrowColor: widget.topWidgetArrowColor,
             bgColor: widget.bgColor,
             allowHorinzontalPadding: false,
             onTapped: () {},
           ),
           Hr(color: widget.borderColor),
-          const Row(
-            children: [
-              DepositsSubheadText(
-                text: "Send to",
-                color: AppColors.neutral700Color,
-              ),
-            ],
-          ),
-          const VSpacerWidget(size: 2.0),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: 1.0,
-              horizontal: 1.0,
-            ),
-            decoration: BoxDecoration(
-              color: widget.bgColor,
-              borderRadius: BorderRadius.circular(8.0),
-              border: Border.all(
-                width: 1.0,
-                color: widget.borderColor,
-              ),
-            ),
-            child: DepositsListCardAccountFive(
-              title: widget.activeBankTitle,
-              titleColor: widget.activeBankTitleColor,
-              subtitle: widget.activeBankSubtitle,
-              subtitleColor: widget.activeBankSubtitleColor,
-              image: widget.activeBankImage,
-              allowHorinzontalPadding: false,
-              items: widget.bankList,
-              onTapped: (a) {
-                widget.onAccountChanged(a);
-              },
-            ),
-          ),
-          const VSpacerWidget(size: 8.0),
-          Row(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(right: 4.0),
-                    child: Icon(
-                      widget.processingFeeIcon,
-                      color: widget.processingFeeIconColor,
-                      size: 17.0,
+          widget.showListSection == false
+              ? Container()
+              : const Row(
+                  children: [
+                    DepositsSubheadText(
+                      text: "Send to",
+                      color: AppColors.neutral700Color,
+                    ),
+                  ],
+                ),
+          widget.showListSection == false
+              ? Container()
+              : const VSpacerWidget(size: 2.0),
+          widget.showListSection == false
+              ? Container()
+              : Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 1.0,
+                    horizontal: 1.0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: widget.bgColor,
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      width: 1.0,
+                      color: widget.borderColor,
                     ),
                   ),
-                  Row(
-                    children: [
-                      DepositsSubheadText(
-                        text: widget.processingFeeText,
-                        color: widget.processingFeeTextColor,
-                      )
-                    ],
-                  )
-                ],
-              )
-            ],
-          ),
+                  child: DepositsListCardAccountFive(
+                    title: widget.activeBankTitle,
+                    titleColor: widget.activeBankTitleColor,
+                    subtitle: widget.activeBankSubtitle,
+                    subtitleColor: widget.activeBankSubtitleColor,
+                    image: widget.activeBankImage,
+                    allowHorinzontalPadding: false,
+                    items: widget.bankList,
+                    onTapped: (a) {
+                      widget.onAccountChanged(a);
+                    },
+                  ),
+                ),
+          const VSpacerWidget(size: 8.0),
+          widget.showProcessingWidget == false
+              ? Container()
+              : Row(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(right: 4.0),
+                          child: Icon(
+                            widget.processingFeeIcon,
+                            color: widget.processingFeeIconColor,
+                            size: 17.0,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            DepositsSubheadText(
+                              text: widget.processingFeeText,
+                              color: widget.processingFeeTextColor,
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
           const VSpacerWidget(size: 3.0),
           Row(
             children: [

@@ -17,27 +17,36 @@ class _ProgressDocPageState extends State<ProgressDocPage> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
       color: AppColors.docBgColor,
-      child: const Column(
+      child: Column(
         children: [
-          DepositsH4Text(text: "Stepper"),
+          const DepositsH4Text(text: "Stepper"),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              VSpacerWidget(size: 10.0),
-              DepositsStepper(title: "Title", currentStep: 1, totalSteps: 2),
-              VSpacerWidget(size: 10.0),
-              DepositsStepper(title: "Title", currentStep: 1, totalSteps: 3),
-              VSpacerWidget(size: 10.0),
-              DepositsStepper(title: "Title", currentStep: 1, totalSteps: 5),
-              VSpacerWidget(size: 10.0),
-              DepositsStepper(title: "Title", currentStep: 1, totalSteps: 6),
-              VSpacerWidget(size: 10.0),
-              DepositsStepper(title: "Title", currentStep: 1, totalSteps: 8),
-              VSpacerWidget(size: 10.0),
+              const VSpacerWidget(size: 10.0),
+              DepositsStepper(
+                title: "Title",
+                currentStep: 2,
+                totalSteps: 2,
+                maxWidth: MediaQuery.of(context).size.width * 0.8,
+              ),
+              const VSpacerWidget(size: 10.0),
+              const DepositsStepper(
+                  title: "Title", currentStep: 1, totalSteps: 3),
+              const VSpacerWidget(size: 10.0),
+              const DepositsStepper(
+                  title: "Title", currentStep: 1, totalSteps: 5),
+              const VSpacerWidget(size: 10.0),
+              const DepositsStepper(
+                  title: "Title", currentStep: 1, totalSteps: 6),
+              const VSpacerWidget(size: 10.0),
+              const DepositsStepper(
+                  title: "Title", currentStep: 1, totalSteps: 8),
+              const VSpacerWidget(size: 10.0),
             ],
           ),
-          DepositsH4Text(text: "Progressbar"),
-          Column(
+          const DepositsH4Text(text: "Progressbar"),
+          const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               VSpacerWidget(size: 10.0),

@@ -80,6 +80,22 @@ class _AppbarAndroidDocPageState extends State<AppbarAndroidDocPage> {
                   iconThreeColor: AppColors.neutral700Color,
                   onIconThreeTapped: () {}),
               const VSpacerWidget(size: 5.0),
+              DepositsAndroidAppbarRoundedBackIcon(
+                title: "Title",
+                titleColor: AppColors.textPrimaryColor,
+                bgColor: AppColors.whiteColor,
+                backIconColor: AppColors.neutral700Color,
+                onIconTapped: () {},
+              ),
+              const VSpacerWidget(size: 5.0),
+              DepositsAndroidAppbarNormalBackIcon(
+                title: "Title",
+                titleColor: AppColors.textPrimaryColor,
+                bgColor: AppColors.whiteColor,
+                backIconColor: AppColors.neutral700Color,
+                onIconTapped: () {},
+              ),
+              const VSpacerWidget(size: 5.0),
             ],
           )
         ],

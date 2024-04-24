@@ -1,6 +1,7 @@
 class AppDimens {
   static const double fontSize40 = 39.0;
   static const double fontSize27 = 26.0;
+  static const double fontSize24 = 23.55;
   static const double fontSize26 = 25.0;
   static const double fontSize22 = 21.0;
   static const double fontSize20 = 19.0;

@@ -1,3 +1,4 @@
+import 'package:deposits_ui_kit_v2/components/typography/all.dart';
 import 'package:deposits_ui_kit_v2/components/utils/all.dart';
 import 'package:deposits_ui_kit_v2/resources/app_resources.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
@@ -508,6 +509,143 @@ class DepositsAndroidAppbarFourState extends State<DepositsAndroidAppbarFour> {
             )
           ],
         ));
+    return result;
+  }
+}
+
+class DepositsAndroidAppbarRoundedBackIcon extends StatefulWidget {
+  final String title;
+  final Color titleColor;
+  final Color bgColor;
+  final Color backIconColor;
+  final Function onIconTapped;
+
+  const DepositsAndroidAppbarRoundedBackIcon({
+    super.key,
+    required this.title,
+    required this.titleColor,
+    required this.bgColor,
+    required this.backIconColor,
+    required this.onIconTapped,
+  });
+
+  @override
+  DepositsAndroidAppbarRoundedBackIconState createState() {
+    return DepositsAndroidAppbarRoundedBackIconState();
+  }
+}
+
+class DepositsAndroidAppbarRoundedBackIconState
+    extends State<DepositsAndroidAppbarRoundedBackIcon> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget result = AppBar(
+      backgroundColor: widget.bgColor,
+      surfaceTintColor: widget.bgColor,
+      centerTitle: true,
+      leading: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 26.0,
+            width: 26.0,
+            decoration: BoxDecoration(
+              color: AppColors.neutral100Color,
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: 0.0,
+              horizontal: 0.0,
+            ),
+            child: Center(
+              child: GestureDetector(
+                onTap: () {
+                  widget.onIconTapped();
+                },
+                child: const Icon(
+                  Icons.keyboard_arrow_left,
+                  color: AppColors.neutral700Color,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+      title: DepositsH5Text(
+        text: widget.title,
+        color: widget.titleColor,
+      ),
+    );
+    return result;
+  }
+}
+
+class DepositsAndroidAppbarNormalBackIcon extends StatefulWidget {
+  final String title;
+  final Color titleColor;
+  final Color bgColor;
+  final Color backIconColor;
+  final Function onIconTapped;
+
+  const DepositsAndroidAppbarNormalBackIcon({
+    super.key,
+    required this.title,
+    required this.titleColor,
+    required this.bgColor,
+    required this.backIconColor,
+    required this.onIconTapped,
+  });
+
+  @override
+  DepositsAndroidAppbarNormalBackIconState createState() {
+    return DepositsAndroidAppbarNormalBackIconState();
+  }
+}
+
+class DepositsAndroidAppbarNormalBackIconState
+    extends State<DepositsAndroidAppbarNormalBackIcon> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget result = AppBar(
+      backgroundColor: widget.bgColor,
+      surfaceTintColor: widget.bgColor,
+      centerTitle: true,
+      leading: IconButton(
+        onPressed: () {
+          widget.onIconTapped();
+        },
+        icon: const Icon(
+          Icons.keyboard_arrow_left,
+          color: AppColors.neutral500Color,
+        ),
+      ),
+      title: DepositsH5Text(
+        text: widget.title,
+        color: widget.titleColor,
+      ),
+    );
     return result;
   }
 }

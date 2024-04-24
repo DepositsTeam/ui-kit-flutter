@@ -511,17 +511,17 @@ class DepositsContentLabelThreeState extends State<DepositsContentLabelThree> {
         widget.onTapped();
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
         decoration: BoxDecoration(
-            color: widget.bgColor, borderRadius: BorderRadius.circular(6.0)),
+          color: widget.bgColor,
+          borderRadius: BorderRadius.circular(6.0),
+        ),
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 10,
+                  flex: 9,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -541,16 +541,13 @@ class DepositsContentLabelThreeState extends State<DepositsContentLabelThree> {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.only(right: 0.0),
-                        child: Icon(
-                          Icons.keyboard_arrow_right,
-                          color: widget.arrowColor,
-                        ),
+                      Icon(
+                        Icons.keyboard_arrow_right,
+                        color: widget.arrowColor,
                       )
                     ],
                   ),
@@ -772,10 +769,13 @@ class DepositsContentListMainState extends State<DepositsContentListMain> {
                                         : 5.0,
                               ),
                               constraints: const BoxConstraints(
-                                  maxHeight: 40.0, maxWidth: 40.0),
+                                maxHeight: 40.0,
+                                maxWidth: 40.0,
+                              ),
                               decoration: BoxDecoration(
-                                  color: widget.imageColor,
-                                  borderRadius: BorderRadius.circular(40.0)),
+                                color: widget.imageColor,
+                                borderRadius: BorderRadius.circular(40.0),
+                              ),
                               child: Center(
                                 child: ImageWidget(imageUrl: widget.image),
                               ),

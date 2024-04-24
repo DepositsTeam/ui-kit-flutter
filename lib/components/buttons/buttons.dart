@@ -125,6 +125,8 @@ class DepositsButtonWithIconWidgetState
 
   @override
   Widget build(BuildContext context) {
+    setSizeValues();
+    setStateValues();
     return OutlinedButton(
       onPressed: () {
         if (widget.state == DepositsButtonStates.disabled) {
@@ -135,6 +137,8 @@ class DepositsButtonWithIconWidgetState
       style: OutlinedButton.styleFrom(
         elevation: 0,
         backgroundColor: bgColor,
+        foregroundColor: bgColor,
+        shadowColor: borderColor,
         side: BorderSide(width: 1, color: borderColor),
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
         shape: RoundedRectangleBorder(

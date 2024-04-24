@@ -10,6 +10,7 @@ import 'package:example/docs/colors.dart';
 import 'package:example/docs/components.dart';
 import 'package:example/docs/countries.dart';
 import 'package:example/docs/forms.dart';
+import 'package:example/docs/grid.dart';
 import 'package:example/docs/ios_alert.dart';
 import 'package:example/docs/password_input.dart';
 import 'package:example/docs/progressbar.dart';
@@ -97,6 +98,9 @@ class _DocPageState extends State<DocPage> {
         break;
       case 'components':
         sectionWidget = const ComponentsDocPage();
+        break;
+      case 'toast':
+        sectionWidget = const ToastDocPage();
         break;
       default:
         sectionWidget = const FullExamplePage();
@@ -261,6 +265,15 @@ class _DocPageState extends State<DocPage> {
               },
             ),
             ListTile(
+              title: const Text('Toast'),
+              onTap: () {
+                setState(() {
+                  section = 'toast';
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
               title: const Text('Typography'),
               onTap: () {
                 setState(() {
@@ -274,6 +287,15 @@ class _DocPageState extends State<DocPage> {
               onTap: () {
                 setState(() {
                   section = 'components';
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('All'),
+              onTap: () {
+                setState(() {
+                  section = 'all';
                 });
                 Navigator.pop(context);
               },

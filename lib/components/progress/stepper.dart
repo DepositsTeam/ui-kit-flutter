@@ -11,6 +11,7 @@ class DepositsStepper extends StatefulWidget {
   final Color stepTextColor;
   final Color stepColor;
   final Color stepActiveColor;
+  final double maxWidth;
 
   const DepositsStepper({
     super.key,
@@ -21,6 +22,7 @@ class DepositsStepper extends StatefulWidget {
     this.stepTextColor = AppColors.neutral500Color,
     this.stepColor = AppColors.neutral300Color,
     this.stepActiveColor = AppColors.primaryColor,
+    this.maxWidth = 300.0,
   });
 
   @override
@@ -49,24 +51,16 @@ class DepositsStepperState extends State<DepositsStepper> {
         Row(
           children: [
             Expanded(
-                child: Container(
-              height: 6.0,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: widget.stepColor,
-                  borderRadius: BorderRadius.circular(30.0)),
-              child: Row(
-                children: [
-                  Container(
-                    height: 6.0,
-                    width: MediaQuery.of(context).size.width * stepPercent,
-                    decoration: BoxDecoration(
-                        color: widget.stepActiveColor,
-                        borderRadius: BorderRadius.circular(30.0)),
-                  )
-                ],
+              child: LinearProgressIndicator(
+                value: stepPercent,
+                backgroundColor: widget.stepColor,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  widget.stepActiveColor,
+                ),
+                borderRadius: BorderRadius.circular(30.0),
+                minHeight: 6.0,
               ),
-            ))
+            ),
           ],
         ),
         Row(

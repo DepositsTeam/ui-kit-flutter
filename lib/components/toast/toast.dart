@@ -95,66 +95,82 @@ class DepositsToastState extends State<DepositsToast> {
         widget.onTapped;
       },
       child: Visibility(
-          visible: visible,
-          child: Container(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-            decoration: BoxDecoration(
-                color: widget.bgColor,
-                borderRadius: BorderRadius.circular(4.0),
-                border: border),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    toastState != DepositsToastStates.normal
-                        ? Expanded(
-                            flex: 1,
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(right: 10.0),
-                                  child: Icon(
-                                    icon,
-                                    color: widget.iconColor,
-                                    size: 14.0,
-                                  ),
-                                )
-                              ],
-                            ))
-                        : Container(),
-                    Expanded(
-                        flex: 13,
-                        child: Column(children: [
-                          Row(
+        visible: visible,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          decoration: BoxDecoration(
+              color: widget.bgColor,
+              borderRadius: BorderRadius.circular(4.0),
+              border: border),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  toastState != DepositsToastStates.normal
+                      ? Expanded(
+                          flex: 1,
+                          child: Row(
                             children: [
-                              TextCustom(
-                                  text: widget.title,
-                                  textFontSize: AppDimens.fontSize14,
-                                  color: widget.titleColor,
-                                  fontWeight: FontWeight.w500)
+                              Container(
+                                padding: const EdgeInsets.only(
+                                  right: 10.0,
+                                  top: 3.0,
+                                ),
+                                child: Icon(
+                                  icon,
+                                  color: widget.iconColor,
+                                  size: 14.0,
+                                ),
+                              )
                             ],
                           ),
-                          widget.description != null && widget.description != ""
-                              ? Container(
-                                  padding: const EdgeInsets.only(top: 5.0),
-                                  child: TextCustom(
+                        )
+                      : Container(),
+                  Expanded(
+                    flex: 13,
+                    child: Column(
+                      children: [
+                        widget.title != ""
+                            ? Row(
+                                children: [
+                                  TextCustom(
+                                    text: widget.title,
+                                    textFontSize: AppDimens.fontSize14,
+                                    color: widget.titleColor,
+                                    fontWeight: FontWeight.w500,
+                                  )
+                                ],
+                              )
+                            : Container(),
+                        widget.description != null && widget.description != ""
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: TextCustom(
                                       text: "${widget.description}",
                                       textFontSize: AppDimens.fontSize14,
                                       color: widget.titleColor,
                                       fontFamily:
                                           DepositsFontFamilies.SFProDisplay,
-                                      fontWeight: FontWeight.w400),
-                                )
-                              : Container()
-                        ]))
-                  ],
-                )
-              ],
-            ),
-          )),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                                ],
+                              )
+                            : Container()
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
     return result;
   }

@@ -121,13 +121,21 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  date_picker_plus:
+    dependency: transitive
+    description:
+      name: date_picker_plus
+      sha256: fda3fc7a2da8a9af1b7cf862c529143c98ceadb5d49870e2b28612c3f0d89422
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
   deposits_ui_kit_v2:
     dependency: "direct dev"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.5"
   dotted_border:
     dependency: transitive
     description:

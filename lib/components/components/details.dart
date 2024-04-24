@@ -393,6 +393,7 @@ class DepositsDetailsMobileTable extends StatefulWidget {
   final Color borderBottomColor;
   final IconData icon;
   final Color iconColor;
+  final Function onCardTapped;
 
   const DepositsDetailsMobileTable({
     super.key,
@@ -406,6 +407,7 @@ class DepositsDetailsMobileTable extends StatefulWidget {
     this.headTextColor = AppColors.neutral500Color,
     this.itemTextColor = AppColors.neutral700Color,
     this.borderBottomColor = AppColors.neutral200Color,
+    required this.onCardTapped,
   });
 
   @override
@@ -482,68 +484,73 @@ class DepositsDetailsMobileTableState
             ],
           ),
           for (var thisItem in widget.items)
-            Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 10.0),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        width: 0.5,
-                        color: widget.borderBottomColor,
+            GestureDetector(
+              onTap: () {
+                widget.onCardTapped(thisItem);
+              },
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 0.5,
+                          color: widget.borderBottomColor,
+                        ),
                       ),
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 4,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.only(right: 3.0),
-                              child: Icon(
-                                widget.icon,
-                                color: widget.iconColor,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 4,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(right: 3.0),
+                                child: Icon(
+                                  widget.icon,
+                                  color: widget.iconColor,
+                                ),
                               ),
-                            ),
-                            DepositsBodyText(
-                              text: thisItem.card,
-                              color: widget.itemTextColor,
-                            ),
-                          ],
+                              DepositsBodyText(
+                                text: thisItem.card,
+                                color: widget.itemTextColor,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            DepositsBodyText(
-                              text: thisItem.type,
-                              color: widget.itemTextColor,
-                            ),
-                          ],
+                        Expanded(
+                          flex: 4,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              DepositsBodyText(
+                                text: thisItem.type,
+                                color: widget.itemTextColor,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            DepositsBodyText(
-                              text: thisItem.balance,
-                              color: widget.itemTextColor,
-                            ),
-                          ],
+                        Expanded(
+                          flex: 4,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              DepositsBodyText(
+                                text: thisItem.balance,
+                                color: widget.itemTextColor,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const VSpacerWidget(size: 7.0),
-              ],
+                  const VSpacerWidget(size: 7.0),
+                ],
+              ),
             ),
         ],
       ),

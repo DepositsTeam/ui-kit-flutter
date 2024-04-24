@@ -3,6 +3,7 @@ library deposits_ui_kit_v2;
 // import 'package:deposits_ui_kit_v2/components/avatars/avatar.dart';
 
 export 'resources/app_resources.dart';
+export 'utils/model/countries.dart';
 export 'utils/model/deposits_checklist_model.dart';
 export 'utils/model/deposits_card_summary_full_model.dart';
 export 'utils/model/deposits_bank_account_list_model.dart';

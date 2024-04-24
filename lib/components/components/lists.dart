@@ -1079,7 +1079,7 @@ class DepositsListChecklistOneState extends State<DepositsListChecklistOne> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 0.0),
       child: Column(
         children: [
           Row(

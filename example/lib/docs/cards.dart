@@ -25,7 +25,7 @@ class _CardDocPageState extends State<CardDocPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const VSpacerWidget(size: 10.0),
-                CardWidgetBlack(
+                DepositsCardWidgetUIBlack(
                     name: "JOSEPH AKINTOLAYO",
                     balance: "\$0.00",
                     balanceTitle: "Available balance",
@@ -38,7 +38,7 @@ class _CardDocPageState extends State<CardDocPage> {
                     cardBrand: CardBrand.mastercard,
                     onTapped: () {}),
                 const VSpacerWidget(size: 10.0),
-                CardWidgetWhite(
+                DepositsCardWidgetUIWhite(
                     name: "JOSEPH AKINTOLAYO",
                     balance: "\$0.00",
                     balanceTitle: "Available balance",
@@ -51,7 +51,7 @@ class _CardDocPageState extends State<CardDocPage> {
                     cardBrand: CardBrand.jcb,
                     onTapped: () {}),
                 const VSpacerWidget(size: 10.0),
-                CardWidgetGrey(
+                DepositsCardWidgetUIGrey(
                     name: "JOSEPH AKINTOLAYO",
                     balance: "\$0.00",
                     balanceTitle: "Available balance",
@@ -64,7 +64,7 @@ class _CardDocPageState extends State<CardDocPage> {
                     cardBrand: CardBrand.visa,
                     onTapped: () {}),
                 const VSpacerWidget(size: 10.0),
-                CardWidgetBlue(
+                DepositsCardWidgetUIBlue(
                     name: "JOSEPH AKINTOLAYO",
                     balance: "\$0.00",
                     balanceTitle: "Available balance",
@@ -77,7 +77,7 @@ class _CardDocPageState extends State<CardDocPage> {
                     cardBrand: CardBrand.americaExpress,
                     onTapped: () {}),
                 const VSpacerWidget(size: 10.0),
-                CardWidgetBlack(
+                DepositsCardWidgetUIBlack(
                     name: "",
                     balance: "\$0.00",
                     balanceTitle: "Available balance",

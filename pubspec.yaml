@@ -1,6 +1,6 @@
 name: deposits_ui_kit_v2
 description: "Deposits Flutter UI Kit for faster and easier development."
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/DepositsTeam/ui-kit-flutter
 
 environment:

@@ -19,19 +19,30 @@ class DepositsFormField extends StatefulWidget {
   final DepositsFormStates formState;
   final String? readOnly;
   final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
+  final TextInputType keyboardType;
   final Function onTapped;
 
-  const DepositsFormField(
-      {super.key,
-      required this.title,
-      this.placeholder,
-      this.size = DepositsFormSizeStates.medium,
-      this.errorText,
-      this.initialValue,
-      this.formState = DepositsFormStates.normal,
-      this.readOnly = "false",
-      this.bgColor,
-      required this.onTapped});
+  const DepositsFormField({
+    super.key,
+    required this.title,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.errorText,
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.readOnly = "false",
+    this.bgColor,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    this.keyboardType = TextInputType.text,
+    required this.onTapped,
+  });
 
   @override
   DepositsFormFieldState createState() {
@@ -92,16 +103,17 @@ class DepositsFormFieldState extends State<DepositsFormField> {
       inputFontSize = AppDimens.fontSize16;
     }
     fillColor = AppColors.transparentColor;
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active ||
         formState == DepositsFormStates.cursor) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
       placeholderTextColor = AppColors.neutral700Color;
       fillColor = AppColors.red150Color;
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       placeholderTextColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
     }
   }
 
@@ -189,6 +201,7 @@ class DepositsFormFieldState extends State<DepositsFormField> {
               });
               widget.onTapped(a);
             },
+            keyboardType: widget.keyboardType,
             // validator: (value) {
             //   if (value == null || value.isEmpty) {
             //     return 'Please enter some text';
@@ -242,6 +255,10 @@ class DepositsTextArea extends StatefulWidget {
   final DepositsFormStates formState;
   final String? readOnly;
   final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
   const DepositsTextArea(
@@ -253,6 +270,10 @@ class DepositsTextArea extends StatefulWidget {
       this.formState = DepositsFormStates.normal,
       this.readOnly = "false",
       this.bgColor,
+      this.borderColorActive = AppColors.primaryColor,
+      this.borderColorError = AppColors.red500Color,
+      this.borderColorNormal = AppColors.neutral300Color,
+      this.borderColorDisabled = AppColors.neutral300Color,
       required this.onTapped});
 
   @override
@@ -302,17 +323,17 @@ class DepositsTextAreaState extends State<DepositsTextArea> {
   }
 
   resetValues() {
-    fillColor = AppColors.transparentColor;
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active ||
         formState == DepositsFormStates.cursor) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
       placeholderTextColor = AppColors.neutral700Color;
       fillColor = AppColors.red150Color;
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       placeholderTextColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
     }
   }
 
@@ -439,6 +460,10 @@ class DepositsSearchInput extends StatefulWidget {
   final DepositsFormStates formState;
   final String? readOnly;
   final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
   const DepositsSearchInput(
@@ -450,6 +475,10 @@ class DepositsSearchInput extends StatefulWidget {
       this.formState = DepositsFormStates.normal,
       this.readOnly = "false",
       this.bgColor,
+      this.borderColorActive = AppColors.primaryColor,
+      this.borderColorError = AppColors.red500Color,
+      this.borderColorNormal = AppColors.neutral300Color,
+      this.borderColorDisabled = AppColors.neutral300Color,
       required this.onTapped});
 
   @override
@@ -499,7 +528,7 @@ class DepositsSearchInputState extends State<DepositsSearchInput> {
   }
 
   resetValues() {
-    if (widget.size == DepositsFormSizeStates.large) {
+    if (widget.size == DepositsFormSizeStates.small) {
       formFieldheight = 40.0;
       cursorHeight = 14.0;
 
@@ -510,17 +539,17 @@ class DepositsSearchInputState extends State<DepositsSearchInput> {
 
       inputFontSize = AppDimens.fontSize16;
     }
-    fillColor = AppColors.transparentColor;
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active ||
         formState == DepositsFormStates.cursor) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
       placeholderTextColor = AppColors.neutral700Color;
       fillColor = AppColors.red150Color;
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       placeholderTextColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
     }
   }
 
@@ -659,6 +688,10 @@ class DepositsPhoneInput extends StatefulWidget {
   final DepositsFormStates formState;
   final String? readOnly;
   final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
   const DepositsPhoneInput(
@@ -672,6 +705,10 @@ class DepositsPhoneInput extends StatefulWidget {
       this.formState = DepositsFormStates.normal,
       this.readOnly = "false",
       this.bgColor,
+      this.borderColorActive = AppColors.primaryColor,
+      this.borderColorError = AppColors.red500Color,
+      this.borderColorNormal = AppColors.neutral300Color,
+      this.borderColorDisabled = AppColors.neutral300Color,
       required this.onTapped});
 
   @override
@@ -723,7 +760,7 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
   }
 
   resetValues() {
-    if (widget.size == DepositsFormSizeStates.large) {
+    if (widget.size == DepositsFormSizeStates.small) {
       formFieldheight = 40.0;
       cursorHeight = 14.0;
 
@@ -734,19 +771,20 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
 
       inputFontSize = AppDimens.fontSize16;
     }
+    borderColor = widget.borderColorNormal;
     fillColor = AppColors.transparentColor;
     if (formState == DepositsFormStates.active ||
         formState == DepositsFormStates.cursor) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
       countryCodeColor = titleTextColor;
     } else if (formState == DepositsFormStates.error) {
       placeholderTextColor = AppColors.neutral700Color;
       fillColor = AppColors.red150Color;
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
       countryCodeColor = titleTextColor;
     } else if (formState == DepositsFormStates.disabled) {
       placeholderTextColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
       countryCodeColor = placeholderTextColor;
     }
   }
@@ -906,6 +944,10 @@ class DepositsNumberInput extends StatefulWidget {
   final DepositsFormStates formState;
   final String? readOnly;
   final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
   const DepositsNumberInput(
@@ -918,6 +960,10 @@ class DepositsNumberInput extends StatefulWidget {
       this.formState = DepositsFormStates.normal,
       this.readOnly = "false",
       this.bgColor,
+      this.borderColorActive = AppColors.primaryColor,
+      this.borderColorError = AppColors.red500Color,
+      this.borderColorNormal = AppColors.neutral300Color,
+      this.borderColorDisabled = AppColors.neutral300Color,
       required this.onTapped});
 
   @override
@@ -984,7 +1030,7 @@ class DepositsNumberInputState extends State<DepositsNumberInput> {
   }
 
   resetValues() {
-    if (widget.size == DepositsFormSizeStates.large) {
+    if (widget.size == DepositsFormSizeStates.small) {
       formFieldheight = 40.0;
       cursorHeight = 14.0;
       suffixMinHeight = 20;
@@ -997,17 +1043,17 @@ class DepositsNumberInputState extends State<DepositsNumberInput> {
 
       inputFontSize = AppDimens.fontSize16;
     }
-    fillColor = AppColors.transparentColor;
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active ||
         formState == DepositsFormStates.cursor) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
       placeholderTextColor = AppColors.neutral700Color;
       fillColor = AppColors.red150Color;
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       placeholderTextColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
     }
   }
 
@@ -1176,17 +1222,26 @@ class DepositsDropDown extends StatefulWidget {
   final DepositsFormSizeStates size;
   final String? initialValue;
   final DepositsFormStates formState;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
-  const DepositsDropDown(
-      {super.key,
-      required this.title,
-      required this.items,
-      this.placeholder,
-      this.size = DepositsFormSizeStates.medium,
-      this.initialValue,
-      this.formState = DepositsFormStates.normal,
-      required this.onTapped});
+  const DepositsDropDown({
+    super.key,
+    required this.title,
+    required this.items,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    required this.onTapped,
+  });
 
   @override
   DepositsDropDownState createState() {
@@ -1240,20 +1295,21 @@ class DepositsDropDownState extends State<DepositsDropDown> {
   }
 
   resetValues() {
-    if (widget.size == DepositsFormSizeStates.large) {
+    if (widget.size == DepositsFormSizeStates.small) {
       formFieldheight = 40.0;
       iconSize = 18.0;
     } else if (widget.size == DepositsFormSizeStates.large) {
       formFieldheight = 56.0;
     }
 
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       iconColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
       inputTextColor = AppColors.neutral300Color;
     }
   }
@@ -1391,16 +1447,25 @@ class DepositsCountryDropDown extends StatefulWidget {
   final DepositsFormSizeStates size;
   final String? initialValue;
   final DepositsFormStates formState;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
-  const DepositsCountryDropDown(
-      {super.key,
-      required this.title,
-      this.placeholder,
-      this.size = DepositsFormSizeStates.medium,
-      this.initialValue,
-      this.formState = DepositsFormStates.normal,
-      required this.onTapped});
+  const DepositsCountryDropDown({
+    super.key,
+    required this.title,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    required this.onTapped,
+  });
 
   @override
   DepositsCountryDropDownState createState() {
@@ -1437,6 +1502,7 @@ class DepositsCountryDropDownState extends State<DepositsCountryDropDown> {
   var iconSize = 24.0;
   var formFieldContentPadding = const EdgeInsets.fromLTRB(12.0, 0.0, 20.0, 0.0);
   var borderColor = AppColors.neutral300Color;
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -1455,25 +1521,27 @@ class DepositsCountryDropDownState extends State<DepositsCountryDropDown> {
 
   @override
   void dispose() {
+    textEditingController.dispose();
     fieldController.dispose();
     super.dispose();
   }
 
   resetValues() {
-    if (widget.size == DepositsFormSizeStates.large) {
+    if (widget.size == DepositsFormSizeStates.small) {
       formFieldheight = 40.0;
       iconSize = 18.0;
     } else if (widget.size == DepositsFormSizeStates.large) {
       formFieldheight = 56.0;
     }
 
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       iconColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
       inputTextColor = AppColors.neutral300Color;
     }
   }
@@ -1546,9 +1614,14 @@ class DepositsCountryDropDownState extends State<DepositsCountryDropDown> {
                                             )
                                           ],
                                         ),
-                                        Row(
-                                          children: [
-                                            Text(
+                                        Expanded(
+                                          child: Container(
+                                            constraints: BoxConstraints(
+                                                maxWidth: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.7),
+                                            child: Text(
                                               item.name,
                                               style: TextStyle(
                                                 fontSize: AppDimens.fontSize16,
@@ -1556,9 +1629,22 @@ class DepositsCountryDropDownState extends State<DepositsCountryDropDown> {
                                                 color: inputTextColor,
                                               ),
                                               overflow: TextOverflow.ellipsis,
-                                            )
-                                          ],
+                                            ),
+                                          ),
                                         )
+                                        // Row(
+                                        //   children: [
+                                        //     Text(
+                                        //       item.name,
+                                        //       style: TextStyle(
+                                        //         fontSize: AppDimens.fontSize16,
+                                        //         fontWeight: FontWeight.w400,
+                                        //         color: inputTextColor,
+                                        //       ),
+                                        //       overflow: TextOverflow.ellipsis,
+                                        //     )
+                                        //   ],
+                                        // )
                                       ],
                                     )
                                   ],
@@ -1613,7 +1699,43 @@ class DepositsCountryDropDownState extends State<DepositsCountryDropDown> {
                   ),
                   menuItemStyleData: const MenuItemStyleData(
                     height: 40,
-                    padding: EdgeInsets.only(left: 14, right: 14),
+                    padding: EdgeInsets.only(
+                      left: 14,
+                      right: 14,
+                    ),
+                  ),
+                  dropdownSearchData: DropdownSearchData(
+                    searchController: textEditingController,
+                    searchInnerWidgetHeight: 50,
+                    searchInnerWidget: Container(
+                      height: 50,
+                      padding: const EdgeInsets.only(
+                        top: 8,
+                        bottom: 4,
+                        right: 8,
+                        left: 8,
+                      ),
+                      child: TextFormField(
+                        expands: true,
+                        maxLines: null,
+                        controller: textEditingController,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 8,
+                          ),
+                          hintText: 'Search for an item...',
+                          hintStyle: const TextStyle(fontSize: 12),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                    searchMatchFn: (item, searchValue) {
+                      return item.value.toString().contains(searchValue);
+                    },
                   ),
                 ),
               ),
@@ -1636,20 +1758,29 @@ class DepositsMiniDropDown extends StatefulWidget {
   final double borderRadius;
   final Color borderColor;
   final Color bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
-  const DepositsMiniDropDown(
-      {super.key,
-      required this.title,
-      required this.items,
-      this.placeholder,
-      this.size = DepositsFormSizeStates.medium,
-      this.initialValue,
-      this.formState = DepositsFormStates.normal,
-      this.borderRadius = 40.0,
-      this.bgColor = AppColors.grey100Color,
-      this.borderColor = AppColors.grey100Color,
-      required this.onTapped});
+  const DepositsMiniDropDown({
+    super.key,
+    required this.title,
+    required this.items,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.borderRadius = 40.0,
+    this.bgColor = AppColors.grey100Color,
+    this.borderColor = AppColors.grey100Color,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    required this.onTapped,
+  });
 
   @override
   DepositsMiniDropDownState createState() {
@@ -1703,20 +1834,21 @@ class DepositsMiniDropDownState extends State<DepositsMiniDropDown> {
   }
 
   resetValues() {
-    if (widget.size == DepositsFormSizeStates.large) {
+    if (widget.size == DepositsFormSizeStates.small) {
       formFieldheight = 40.0;
       iconSize = 18.0;
     } else if (widget.size == DepositsFormSizeStates.large) {
       formFieldheight = 56.0;
     }
 
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       iconColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
       inputTextColor = AppColors.neutral300Color;
     }
   }
@@ -1845,17 +1977,26 @@ class DepositsMultiSelect extends StatefulWidget {
   final DepositsFormSizeStates size;
   final List<String>? initialValues;
   final DepositsFormStates formState;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
-  const DepositsMultiSelect(
-      {super.key,
-      required this.title,
-      required this.items,
-      this.placeholder,
-      this.size = DepositsFormSizeStates.medium,
-      this.initialValues,
-      this.formState = DepositsFormStates.normal,
-      required this.onTapped});
+  const DepositsMultiSelect({
+    super.key,
+    required this.title,
+    required this.items,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.initialValues,
+    this.formState = DepositsFormStates.normal,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    required this.onTapped,
+  });
 
   @override
   DepositsMultiSelectState createState() {
@@ -1910,7 +2051,7 @@ class DepositsMultiSelectState extends State<DepositsMultiSelect> {
   }
 
   resetValues() {
-    if (widget.size == DepositsFormSizeStates.large) {
+    if (widget.size == DepositsFormSizeStates.small) {
       formFieldheight = 40.0;
       iconSize = 18.0;
       selectedItemMarginTB = 5.0;
@@ -1925,13 +2066,14 @@ class DepositsMultiSelectState extends State<DepositsMultiSelect> {
       dropdownHeight = 300;
     }
 
+    borderColor = widget.borderColorNormal;
     if (formState == DepositsFormStates.active) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormStates.error) {
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormStates.disabled) {
       iconColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
       inputTextColor = AppColors.neutral300Color;
     }
   }
@@ -2066,6 +2208,10 @@ class DepositsFileUploadInput extends StatefulWidget {
   final DepositsFormUploadStates formState;
   final String? readOnly;
   final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
   final Function onTapped;
 
   const DepositsFileUploadInput(
@@ -2078,6 +2224,10 @@ class DepositsFileUploadInput extends StatefulWidget {
       this.formState = DepositsFormUploadStates.normal,
       this.readOnly = "false",
       this.bgColor,
+      this.borderColorActive = AppColors.primaryColor,
+      this.borderColorError = AppColors.red500Color,
+      this.borderColorNormal = AppColors.neutral300Color,
+      this.borderColorDisabled = AppColors.neutral300Color,
       required this.onTapped});
 
   @override
@@ -2135,16 +2285,17 @@ class DepositsFileUploadInputState extends State<DepositsFileUploadInput> {
   }
 
   resetValues() {
+    borderColor = widget.borderColorNormal;
     fillColor = AppColors.transparentColor;
     if (formState == DepositsFormUploadStates.active) {
-      borderColor = AppColors.primaryColor;
+      borderColor = widget.borderColorActive;
     } else if (formState == DepositsFormUploadStates.error) {
       placeholderTextColor = AppColors.neutral700Color;
       fillColor = AppColors.red150Color;
-      borderColor = AppColors.red500Color;
+      borderColor = widget.borderColorError;
     } else if (formState == DepositsFormUploadStates.disabled) {
       placeholderTextColor = AppColors.neutral300Color;
-      borderColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
     }
   }
 
@@ -2286,18 +2437,21 @@ class DepositsFileUpload extends StatefulWidget {
   final int uploadPercent;
   final String? errorText;
   final DepositsFormUploadStates formState;
+  final Color borderColorActive;
   final Function onTapped;
 
-  const DepositsFileUpload(
-      {super.key,
-      required this.title,
-      this.supportedTypes,
-      this.fileName,
-      this.fileSize,
-      this.uploadPercent = 0,
-      this.errorText,
-      this.formState = DepositsFormUploadStates.normal,
-      required this.onTapped});
+  const DepositsFileUpload({
+    super.key,
+    required this.title,
+    this.supportedTypes,
+    this.fileName,
+    this.fileSize,
+    this.uploadPercent = 0,
+    this.errorText,
+    this.formState = DepositsFormUploadStates.normal,
+    this.borderColorActive = AppColors.primaryColor,
+    required this.onTapped,
+  });
 
   @override
   DepositsFileUploadState createState() {
@@ -2328,7 +2482,7 @@ class DepositsFileUploadState extends State<DepositsFileUpload> {
       setState(() {
         if (widget.formState == DepositsFormUploadStates.active) {
           iconColor = AppColors.primaryColor;
-          borderColor = AppColors.primaryColor;
+          borderColor = widget.borderColorActive;
         }
         if (widget.formState == DepositsFormUploadStates.disabled) {
           iconColor = AppColors.neutral400Color;
@@ -2339,10 +2493,10 @@ class DepositsFileUploadState extends State<DepositsFileUpload> {
           borderColor = AppColors.errorColor;
         }
         if (widget.formState == DepositsFormUploadStates.uploading) {
-          borderColor = AppColors.primaryColor;
+          borderColor = widget.borderColorActive;
         }
         if (widget.formState == DepositsFormUploadStates.uploaded) {
-          borderColor = AppColors.primaryColor;
+          borderColor = widget.borderColorActive;
         }
       });
     });
@@ -2637,5 +2791,237 @@ class DepositsFormSliderState extends State<DepositsFormSlider> {
         ),
       ),
     );
+  }
+}
+
+class DepositsDatePicker extends StatefulWidget {
+  final String title;
+  final String? placeholder;
+  final DepositsFormSizeStates size;
+  final String? errorText;
+  final String? initialValue;
+  final DepositsFormStates formState;
+  final String? readOnly;
+  final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
+  final Function onTapped;
+
+  const DepositsDatePicker(
+      {super.key,
+      required this.title,
+      this.placeholder,
+      this.size = DepositsFormSizeStates.medium,
+      this.errorText,
+      this.initialValue,
+      this.formState = DepositsFormStates.normal,
+      this.readOnly = "false",
+      this.bgColor,
+      this.borderColorActive = AppColors.primaryColor,
+      this.borderColorError = AppColors.red500Color,
+      this.borderColorNormal = AppColors.neutral300Color,
+      this.borderColorDisabled = AppColors.neutral300Color,
+      required this.onTapped});
+
+  @override
+  DepositsDatePickerState createState() {
+    return DepositsDatePickerState();
+  }
+}
+
+class DepositsDatePickerState extends State<DepositsDatePicker> {
+  var initialValue = "";
+  DepositsFormStates formState = DepositsFormStates.normal;
+
+  var fillColor = AppColors.transparentColor;
+
+  var titleFontSize = AppDimens.fontSize16;
+  var titleTextColor = AppColors.neutral700Color;
+  var titleFontWeight = FontWeight.w400;
+
+  var placeholderFontSize = AppDimens.fontSize16;
+  var placeholderTextColor = AppColors.neutral300Color;
+  var placeholderFontWeight = FontWeight.w400;
+
+  var inputFontSize = AppDimens.fontSize14;
+  var inputTextColor = AppColors.neutral700Color;
+  var inputFontWeight = FontWeight.w400;
+
+  var errorFontSize = AppDimens.fontSize12;
+  var errorTextColor = AppColors.red500Color;
+  var errorFontWeight = FontWeight.w400;
+
+  var formFieldheight = 48.0;
+  var cursorHeight = 18.0;
+  var suffixMinHeight = 28.0;
+  var formFieldContentPadding = const EdgeInsets.fromLTRB(12.0, 0.0, 20.0, 0.0);
+  var borderColor = AppColors.neutral300Color;
+
+  var countryCodeColor = AppColors.neutral300Color;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        formState = widget.formState;
+        initialValue = "${widget.initialValue}";
+        resetValues();
+      });
+    });
+  }
+
+  resetValues() {
+    if (widget.size == DepositsFormSizeStates.small) {
+      formFieldheight = 40.0;
+      cursorHeight = 14.0;
+
+      inputFontSize = AppDimens.fontSize12;
+    } else if (widget.size == DepositsFormSizeStates.large) {
+      formFieldheight = 56.0;
+      cursorHeight = 25.0;
+
+      inputFontSize = AppDimens.fontSize16;
+    }
+    borderColor = widget.borderColorNormal;
+    fillColor = AppColors.transparentColor;
+    if (formState == DepositsFormStates.active ||
+        formState == DepositsFormStates.cursor) {
+      borderColor = widget.borderColorActive;
+      countryCodeColor = titleTextColor;
+    } else if (formState == DepositsFormStates.error) {
+      placeholderTextColor = AppColors.neutral700Color;
+      fillColor = AppColors.red150Color;
+      borderColor = widget.borderColorError;
+      countryCodeColor = titleTextColor;
+    } else if (formState == DepositsFormStates.disabled) {
+      placeholderTextColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
+      countryCodeColor = placeholderTextColor;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget result = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: TextCustom(
+                text: widget.title,
+                textFontSize: titleFontSize,
+                color: titleTextColor,
+                fontWeight: titleFontWeight,
+              ),
+            )
+          ],
+        ),
+        SizedBox(
+          height: formFieldheight,
+          child: GestureDetector(
+            onTap: () {
+              widget.onTapped();
+            },
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: formFieldheight,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1.0,
+                        color: AppColors.neutral300Color,
+                      ),
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 11,
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 10.0,
+                                    ),
+                                    child: TextCustom(
+                                      text: initialValue == ""
+                                          ? "MM/DD/YYYY"
+                                          : initialValue,
+                                      textFontSize: AppDimens.fontSize16,
+                                      color: initialValue == ""
+                                          ? AppColors.neutral300Color
+                                          : AppColors.textPrimaryColor,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily:
+                                          DepositsFontFamilies.SFProText,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            const Expanded(
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.arrow_drop_down,
+                                    color: AppColors.neutral600Color,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        widget.errorText.toString().isNotEmpty
+            ? Container(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(right: 5.0),
+                              child: const Icon(
+                                Icons.info,
+                                size: 10.0,
+                                color: AppColors.red500Color,
+                              ),
+                            )
+                          ],
+                        ),
+                        Expanded(
+                            child: TextCustom(
+                                text: "${widget.errorText}",
+                                textFontSize: errorFontSize,
+                                color: errorTextColor,
+                                fontWeight: errorFontWeight))
+                      ],
+                    )
+                  ],
+                ),
+              )
+            : Container(),
+      ],
+    );
+    return result;
   }
 }

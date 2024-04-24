@@ -40,29 +40,16 @@ class DepositsProgressbarState extends State<DepositsProgressbar> {
         Row(
           children: [
             Expanded(
-                child: Container(
-              height: 6.0,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: widget.color,
-                  borderRadius: BorderRadius.circular(30.0)),
-              child: Row(
-                children: [
-                  SizedBox(
-                    child: Container(
-                      height: 6.0,
-                      constraints: BoxConstraints(
-                              maxWidth: MediaQuery.of(context).size.width) *
-                          0.9,
-                      width: MediaQuery.of(context).size.width * percent,
-                      decoration: BoxDecoration(
-                          color: widget.activeColor,
-                          borderRadius: BorderRadius.circular(30.0)),
-                    ),
-                  )
-                ],
+              child: LinearProgressIndicator(
+                value: percent,
+                backgroundColor: widget.color,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  widget.activeColor,
+                ),
+                borderRadius: BorderRadius.circular(30.0),
+                minHeight: 6.0,
               ),
-            ))
+            )
           ],
         ),
       ],

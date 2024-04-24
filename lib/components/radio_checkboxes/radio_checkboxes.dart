@@ -171,8 +171,8 @@ class DepositsCheckboxState extends State<DepositsCheckbox> {
     titleColor = widget.titleColor;
     if (formState == DepositsCheckboxFormState.active) {
       innerRingColor = AppColors.whiteColor;
-      outerRingColor = AppColors.primaryColor;
-      outerRingBorderColor = outerRingColor;
+      outerRingColor = widget.selectedColor;
+      outerRingBorderColor = widget.selectedColor;
     } else if (formState == DepositsCheckboxFormState.activeDisabled) {
       innerRingColor = AppColors.whiteColor;
       outerRingColor = AppColors.blue200Color;
@@ -185,6 +185,10 @@ class DepositsCheckboxState extends State<DepositsCheckbox> {
       outerRingBorderColor = const Color.fromRGBO(0, 0, 0, 0.04);
 
       titleColor = AppColors.neutral500Color;
+    } else {
+      innerRingColor = AppColors.neutral100Color;
+      outerRingColor = AppColors.neutral100Color;
+      outerRingBorderColor = AppColors.neutral300Color;
     }
   }
 
@@ -192,14 +196,18 @@ class DepositsCheckboxState extends State<DepositsCheckbox> {
   Widget build(BuildContext context) {
     Widget result = GestureDetector(
       onTap: () {
-        if (formState == DepositsCheckboxFormState.normal ||
-            formState == DepositsCheckboxFormState.active) {
+        if (formState == DepositsCheckboxFormState.normal) {
           setState(() {
             formState = DepositsCheckboxFormState.active;
             resetValues();
           });
+        } else if (formState == DepositsCheckboxFormState.active) {
+          setState(() {
+            formState = DepositsCheckboxFormState.normal;
+            resetValues();
+          });
         }
-        widget.onTapped;
+        widget.onTapped();
       },
       child: Column(
         children: [
@@ -211,16 +219,21 @@ class DepositsCheckboxState extends State<DepositsCheckbox> {
                     width: 16.0,
                     height: 16.0,
                     decoration: BoxDecoration(
-                        color: outerRingColor,
-                        borderRadius: BorderRadius.circular(2.0),
-                        border: Border.all(
-                            width: 1.0, color: outerRingBorderColor)),
-                    child: const Center(
-                      child: Icon(
-                        Icons.check_rounded,
-                        size: 10.0,
-                        color: AppColors.whiteColor,
+                      color: outerRingColor,
+                      borderRadius: BorderRadius.circular(2.0),
+                      border: Border.all(
+                        width: 1.0,
+                        color: outerRingBorderColor,
                       ),
+                    ),
+                    child: Center(
+                      child: formState == DepositsCheckboxFormState.normal
+                          ? Container()
+                          : const Icon(
+                              Icons.check_rounded,
+                              size: 10.0,
+                              color: AppColors.whiteColor,
+                            ),
                     ),
                   )
                 ],

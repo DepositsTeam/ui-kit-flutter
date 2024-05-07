@@ -27,3 +27,14 @@
 * add form field active color to be a variable
 * add all form active color to be a variable
 * fix deposits checkbox state change bug
+
+## 0.0.7
+
+* add max char to deposits form field
+* add max char to deposits number field
+* fix font size
+
+## 0.0.8
+
+* make small screen adjustments in components
+* add id to some models

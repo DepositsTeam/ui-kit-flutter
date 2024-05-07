@@ -4,7 +4,6 @@ import 'package:deposits_ui_kit_v2/components/utils/all.dart';
 import 'package:deposits_ui_kit_v2/resources/app_resources.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class DepositsAvatar extends StatelessWidget {
   /// The message of this avatar.
@@ -35,11 +34,16 @@ class DepositsAvatar extends StatelessWidget {
       width = AppDimens.height32;
     }
     Widget result = Container(
-      padding: const EdgeInsets.symmetric(vertical: 3.0, horizontal: 3.0),
+      padding: const EdgeInsets.symmetric(
+        vertical: 3.0,
+        horizontal: 2.0,
+      ),
       height: height,
       width: width,
       decoration: BoxDecoration(
-          color: bgColor, borderRadius: BorderRadius.circular(20.0)),
+        color: bgColor,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -50,10 +54,11 @@ class DepositsAvatar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextCustom(
-                    text: text,
-                    textFontSize: fontSize,
-                    color: color,
-                    fontWeight: FontWeight.w500)
+                  text: text,
+                  textFontSize: fontSize,
+                  color: color,
+                  fontWeight: FontWeight.w500,
+                )
               ],
             )
           ],

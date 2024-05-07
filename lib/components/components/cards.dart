@@ -1,6 +1,8 @@
+import 'package:deposits_ui_kit_v2/components/components/all.dart';
 import 'package:deposits_ui_kit_v2/deposits_ui_kit_v2.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DepositsCardPerk extends StatefulWidget {
   final String image;
@@ -694,6 +696,188 @@ class DepositsCardTargetProgressCardState
   }
 }
 
+class DepositsCardBorderedMain extends StatefulWidget {
+  final String title;
+  final Color titleColor;
+  final String subtitle;
+  final Color subtitleColor;
+  final String image;
+  final Color imageColor;
+  final Color bgColor;
+  final Widget rightWidget;
+  final bool showLeftWidget;
+  final bool showRightWidget;
+  final int rightWidgetExpandSize;
+  final int leftWidgetExpandSize;
+  final double rightWidgetTopPadding;
+  final bool allowHorinzontalPadding;
+  final bool showImageDecoration;
+  final Color imageBorderColor;
+  final Function onTapped;
+
+  const DepositsCardBorderedMain({
+    super.key,
+    required this.title,
+    this.titleColor = AppColors.textPrimaryColor,
+    required this.subtitle,
+    this.subtitleColor = AppColors.textSecondaryColor,
+    required this.image,
+    this.imageColor = AppColors.transparentColor,
+    this.bgColor = AppColors.whiteColor,
+    required this.rightWidget,
+    this.showLeftWidget = true,
+    this.showRightWidget = true,
+    this.rightWidgetExpandSize = 1,
+    this.leftWidgetExpandSize = 2,
+    this.rightWidgetTopPadding = 0.0,
+    this.allowHorinzontalPadding = true,
+    this.imageBorderColor = const Color(0xffF1F5F9),
+    this.showImageDecoration = false,
+    required this.onTapped,
+  });
+
+  @override
+  DepositsCardBorderedMainState createState() {
+    return DepositsCardBorderedMainState();
+  }
+}
+
+class DepositsCardBorderedMainState extends State<DepositsCardBorderedMain> {
+  int centerWidgetSize = 10;
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+    if (widget.showLeftWidget == false) {
+      centerWidgetSize = centerWidgetSize + 1;
+    }
+    if (widget.showRightWidget == false) {
+      centerWidgetSize = centerWidgetSize + 1;
+    }
+    return GestureDetector(
+      onTap: () {
+        widget.onTapped();
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: 10.0,
+          horizontal: widget.allowHorinzontalPadding == false ? 0.0 : 10.0,
+        ),
+        decoration: BoxDecoration(
+          color: widget.bgColor,
+          borderRadius: BorderRadius.circular(6.0),
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                widget.showLeftWidget == true
+                    ? Expanded(
+                        flex: widget.leftWidgetExpandSize,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 1.0,
+                                horizontal:
+                                    widget.allowHorinzontalPadding == false
+                                        ? 0.0
+                                        : 5.0,
+                              ),
+                              constraints: BoxConstraints(
+                                maxHeight: 42.w,
+                                maxWidth: 42.w,
+                              ),
+                              decoration: widget.showImageDecoration == false
+                                  ? null
+                                  : BoxDecoration(
+                                      color: widget.imageColor,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        width: 1.0,
+                                        color: widget.imageBorderColor,
+                                      ),
+                                    ),
+                              child: Center(
+                                child: ImageWidget(
+                                  imageUrl: widget.image,
+                                  imageHeight: 42.w,
+                                  imageWidth: 42.w,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    : Container(),
+                Expanded(
+                  flex: centerWidgetSize,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                          bottom: 5.0,
+                          left: 8.0,
+                        ),
+                        child: DepositsH5Text(
+                          text: widget.title,
+                          color: widget.titleColor,
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                        ),
+                        child: ClipRect(
+                          child: Wrap(
+                            clipBehavior: Clip.antiAlias,
+                            children: [
+                              DepositsSubheadText(
+                                text: widget.subtitle,
+                                color: widget.subtitleColor,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                widget.showRightWidget == true
+                    ? Expanded(
+                        flex: widget.rightWidgetExpandSize,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(
+                                right: 0.0,
+                                top: widget.rightWidgetTopPadding,
+                              ),
+                              child: widget.rightWidget,
+                            ),
+                          ],
+                        ),
+                      )
+                    : Container(),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class DepositsCardBorderedOne extends StatefulWidget {
   final String title;
   final Color titleColor;
@@ -771,6 +955,8 @@ class DepositsCardBorderedTwo extends StatefulWidget {
   final Color arrowColor;
   final Color bgColor;
   final Color borderColor;
+  final double rightWidgetTopPadding;
+  final bool showImageDecoration;
   final Function onTapped;
 
   const DepositsCardBorderedTwo({
@@ -783,6 +969,8 @@ class DepositsCardBorderedTwo extends StatefulWidget {
     this.bgColor = AppColors.whiteColor,
     this.borderColor = const Color(0xffE2EDF6),
     this.imageColor = AppColors.neutral200Color,
+    this.rightWidgetTopPadding = 20.0,
+    this.showImageDecoration = false,
     required this.image,
     required this.onTapped,
   });
@@ -814,16 +1002,22 @@ class DepositsCardBorderedTwoState extends State<DepositsCardBorderedTwo> {
           color: widget.borderColor,
         ),
       ),
-      child: DepositsContentListOne(
+      child: DepositsCardBorderedMain(
         title: widget.title,
         titleColor: widget.titleColor,
         subtitle: widget.subtitle,
         subtitleColor: widget.subtitleColor,
         image: widget.image,
         imageColor: widget.imageColor,
-        arrowColor: widget.arrowColor,
+        rightWidgetExpandSize: 1,
+        rightWidgetTopPadding: widget.rightWidgetTopPadding,
+        rightWidget: Icon(
+          Icons.keyboard_arrow_right,
+          color: widget.arrowColor,
+        ),
         bgColor: widget.bgColor,
         allowHorinzontalPadding: false,
+        showImageDecoration: widget.showImageDecoration,
         onTapped: () {
           widget.onTapped();
         },
@@ -859,6 +1053,8 @@ class DepositsCardBorderedThree extends StatefulWidget {
   final Color topWidgetArrowColor;
   final bool showProcessingWidget;
   final bool showListSection;
+  final double rightWidgetTopPadding;
+  final int leftWidgetExpandSize;
   final Function onPressed;
   final Function onAccountChanged;
 
@@ -890,6 +1086,8 @@ class DepositsCardBorderedThree extends StatefulWidget {
     this.topWidgetArrowColor = AppColors.transparentColor,
     this.showProcessingWidget = true,
     this.showListSection = true,
+    this.rightWidgetTopPadding = 0.0,
+    this.leftWidgetExpandSize = 2,
     required this.onPressed,
     required this.onAccountChanged,
   });
@@ -923,19 +1121,26 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
       ),
       child: Column(
         children: [
-          DepositsContentListOne(
+          DepositsCardBorderedMain(
             title: widget.title,
             titleColor: widget.titleColor,
             subtitle: widget.subtitle,
             subtitleColor: widget.subtitleColor,
             image: widget.image,
             imageColor: widget.imageColor,
-            arrowColor: widget.topWidgetArrowColor,
+            rightWidgetExpandSize: 2,
+            rightWidget: Icon(
+              Icons.keyboard_arrow_right,
+              color: widget.topWidgetArrowColor,
+            ),
+            rightWidgetTopPadding: widget.rightWidgetTopPadding,
             bgColor: widget.bgColor,
             allowHorinzontalPadding: false,
             onTapped: () {},
           ),
+          const VSpacerWidget(size: 5.0),
           Hr(color: widget.borderColor),
+          const VSpacerWidget(size: 4.0),
           widget.showListSection == false
               ? Container()
               : const Row(
@@ -972,8 +1177,9 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
                     image: widget.activeBankImage,
                     allowHorinzontalPadding: false,
                     items: widget.bankList,
-                    onTapped: (a) {
-                      widget.onAccountChanged(a);
+                    leftWidgetSize: widget.leftWidgetExpandSize,
+                    onTapped: () {
+                      widget.onAccountChanged();
                     },
                   ),
                 ),
@@ -997,6 +1203,7 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
                             DepositsSubheadText(
                               text: widget.processingFeeText,
                               color: widget.processingFeeTextColor,
+                              fontWeight: FontWeight.w500,
                             )
                           ],
                         )
@@ -1014,13 +1221,15 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
                   bgColor: widget.buttonBgColor,
                   borderColor: widget.buttonBorderColor,
                   iconWidget: widget.buttonIconWidget,
+                  size: DepositsButtonSize.huge,
                   onPressed: () {
                     widget.onPressed();
                   },
                 ),
               )
             ],
-          )
+          ),
+          const VSpacerWidget(size: 3.0),
         ],
       ),
     );

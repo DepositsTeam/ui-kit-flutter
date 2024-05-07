@@ -1,6 +1,7 @@
 import 'package:deposits_ui_kit_v2/deposits_ui_kit_v2.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DepositsContentCardOne extends StatefulWidget {
   final String title;
@@ -599,6 +600,7 @@ class DepositsContentLabelFourState extends State<DepositsContentLabelFour> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return GestureDetector(
       onTap: () {
         widget.onTapped();
@@ -619,16 +621,13 @@ class DepositsContentLabelFourState extends State<DepositsContentLabelFour> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(bottom: 5.0),
-                            child: DepositsH2Text(
-                              text: widget.title,
-                              color: widget.titleColor,
-                            ),
-                          ),
-                        ],
+                      Container(
+                        padding: const EdgeInsets.only(bottom: 5.0),
+                        constraints: BoxConstraints(maxWidth: 320.w),
+                        child: DepositsH2Text(
+                          text: widget.title,
+                          color: widget.titleColor,
+                        ),
                       ),
                       ClipRect(
                         child: Wrap(
@@ -726,6 +725,7 @@ class DepositsContentListMain extends StatefulWidget {
 }
 
 class DepositsContentListMainState extends State<DepositsContentListMain> {
+  int centerWidgetSize = 10;
   @override
   void initState() {
     super.initState();
@@ -733,6 +733,13 @@ class DepositsContentListMainState extends State<DepositsContentListMain> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+    if (widget.showLeftWidget == false) {
+      centerWidgetSize = centerWidgetSize + 1;
+    }
+    if (widget.showRightWidget == false) {
+      centerWidgetSize = centerWidgetSize + 1;
+    }
     return GestureDetector(
       onTap: () {
         widget.onTapped();
@@ -759,8 +766,8 @@ class DepositsContentListMainState extends State<DepositsContentListMain> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
-                              height: 48.0,
-                              width: 48.0,
+                              height: 48.w,
+                              width: 48.w,
                               padding: EdgeInsets.symmetric(
                                 vertical: 5.0,
                                 horizontal:
@@ -768,9 +775,9 @@ class DepositsContentListMainState extends State<DepositsContentListMain> {
                                         ? 0.0
                                         : 5.0,
                               ),
-                              constraints: const BoxConstraints(
-                                maxHeight: 40.0,
-                                maxWidth: 40.0,
+                              constraints: BoxConstraints(
+                                maxHeight: 35.w,
+                                maxWidth: 35.w,
                               ),
                               decoration: BoxDecoration(
                                 color: widget.imageColor,
@@ -785,21 +792,17 @@ class DepositsContentListMainState extends State<DepositsContentListMain> {
                       )
                     : Container(),
                 Expanded(
-                  flex: 10,
+                  flex: centerWidgetSize,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(bottom: 5.0),
-                            child: DepositsH5Text(
-                              text: widget.title,
-                              color: widget.titleColor,
-                            ),
-                          ),
-                        ],
+                      Container(
+                        padding: const EdgeInsets.only(bottom: 5.0),
+                        child: DepositsH5Text(
+                          text: widget.title,
+                          color: widget.titleColor,
+                        ),
                       ),
                       ClipRect(
                         child: Wrap(
@@ -823,8 +826,9 @@ class DepositsContentListMainState extends State<DepositsContentListMain> {
                           children: [
                             Container(
                               padding: EdgeInsets.only(
-                                  right: 1.0,
-                                  top: widget.rightWidgetTopPadding),
+                                right: 0.0,
+                                top: widget.rightWidgetTopPadding,
+                              ),
                               child: widget.rightWidget,
                             ),
                           ],
@@ -904,9 +908,13 @@ class DepositsContentListMainHorinzontalState
                               height: 48.0,
                               width: 48.0,
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 5.0, horizontal: 5.0),
-                              constraints: const BoxConstraints(
-                                  maxHeight: 40.0, maxWidth: 40.0),
+                                vertical: 5.0,
+                                horizontal: 5.0,
+                              ),
+                              constraints: BoxConstraints(
+                                maxHeight: 35.w,
+                                maxWidth: 35.w,
+                              ),
                               decoration: BoxDecoration(
                                   color: widget.imageColor,
                                   borderRadius: BorderRadius.circular(40.0)),
@@ -919,7 +927,7 @@ class DepositsContentListMainHorinzontalState
                       )
                     : Container(),
                 Expanded(
-                  flex: 10,
+                  flex: 9,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -945,8 +953,10 @@ class DepositsContentListMainHorinzontalState
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Container(
-                              padding:
-                                  const EdgeInsets.only(right: 1.0, top: 0.0),
+                              padding: const EdgeInsets.only(
+                                right: 1.0,
+                                top: 0.0,
+                              ),
                               child: widget.rightWidget,
                             ),
                           ],
@@ -1278,25 +1288,31 @@ class DepositsContentListThreeState extends State<DepositsContentListThree> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return DepositsContentListMain(
-        title: widget.title,
-        subtitle: widget.subtitle,
-        image: widget.image,
-        imageColor: AppColors.transparentColor,
-        rightWidgetExpandSize: 5,
-        rightWidget: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: DepositsSubheadText(text: widget.arrowText),
+      title: widget.title,
+      subtitle: widget.subtitle,
+      image: widget.image,
+      imageColor: AppColors.transparentColor,
+      rightWidgetExpandSize: 5,
+      rightWidget: Row(
+        children: [
+          Container(
+            padding: EdgeInsets.only(
+              right: 0.w,
             ),
-            Icon(
-              Icons.keyboard_arrow_right,
-              color: widget.arrowColor,
-            )
-          ],
-        ),
-        onTapped: widget.onTapped);
+            child: DepositsSubheadText(
+              text: widget.arrowText,
+            ),
+          ),
+          Icon(
+            Icons.keyboard_arrow_right,
+            color: widget.arrowColor,
+          )
+        ],
+      ),
+      onTapped: widget.onTapped,
+    );
   }
 }
 
@@ -1341,26 +1357,29 @@ class DepositsContentListFourState extends State<DepositsContentListFour> {
   @override
   Widget build(BuildContext context) {
     return DepositsContentListMainHorinzontal(
-        title: widget.title,
-        image: widget.image,
-        imageColor: AppColors.transparentColor,
-        rightWidgetExpandSize: 5,
-        rightWidget: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.only(right: 2.0),
-              child: DepositsBadge(
-                  text: widget.badgeText,
-                  bgColor: widget.badgeBgColor,
-                  textColor: widget.badgeTextColor),
+      title: widget.title,
+      image: widget.image,
+      imageColor: AppColors.transparentColor,
+      rightWidgetExpandSize: 6,
+      rightWidget: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.only(right: 1.0),
+            child: DepositsBadge(
+              text: widget.badgeText,
+              bgColor: widget.badgeBgColor,
+              textColor: widget.badgeTextColor,
+              fontSize: AppDimens.fontSize10,
             ),
-            Icon(
-              Icons.keyboard_arrow_right,
-              color: widget.arrowColor,
-            )
-          ],
-        ),
-        onTapped: widget.onTapped);
+          ),
+          Icon(
+            Icons.keyboard_arrow_right,
+            color: widget.arrowColor,
+          )
+        ],
+      ),
+      onTapped: widget.onTapped,
+    );
   }
 }
 
@@ -1458,19 +1477,20 @@ class DepositsContentListSixState extends State<DepositsContentListSix> {
   @override
   Widget build(BuildContext context) {
     return DepositsContentListMain(
-        title: widget.title,
-        subtitle: widget.subtitle,
-        image: widget.image,
-        imageColor: AppColors.transparentColor,
-        showLeftWidget: false,
-        rightWidgetExpandSize: 3,
-        rightWidget: DepositsRadio(
-          title: "",
-          selectedColor: widget.activeRadioColor,
-          formState: widget.formState,
-          onTapped: () {},
-        ),
-        onTapped: widget.onTapped);
+      title: widget.title,
+      subtitle: widget.subtitle,
+      image: widget.image,
+      imageColor: AppColors.transparentColor,
+      showLeftWidget: false,
+      rightWidgetExpandSize: 3,
+      rightWidget: DepositsRadio(
+        title: "",
+        selectedColor: widget.activeRadioColor,
+        formState: widget.formState,
+        onTapped: () {},
+      ),
+      onTapped: widget.onTapped,
+    );
   }
 }
 
@@ -1576,14 +1596,16 @@ class DepositsContentListEightState extends State<DepositsContentListEight> {
   @override
   Widget build(BuildContext context) {
     return DepositsContentListMain(
-        title: widget.title,
-        subtitle: widget.subtitle,
-        image: widget.image,
-        imageColor: widget.imageBgColor,
-        showRightWidget: false,
-        rightWidgetExpandSize: 0,
-        rightWidget: Container(),
-        onTapped: widget.onTapped);
+      title: widget.title,
+      subtitle: widget.subtitle,
+      leftWidgetExpandSize: 3,
+      image: widget.image,
+      imageColor: widget.imageBgColor,
+      showRightWidget: false,
+      rightWidgetExpandSize: 0,
+      rightWidget: Container(),
+      onTapped: widget.onTapped,
+    );
   }
 }
 
@@ -1639,7 +1661,7 @@ class DepositsContentListNineState extends State<DepositsContentListNine> {
         image: widget.image,
         imageColor: widget.imageBgColor,
         leftWidgetExpandSize: 3,
-        rightWidgetExpandSize: 4,
+        rightWidgetExpandSize: 5,
         rightWidgetTopPadding: 0.0,
         rightWidget: Column(
           children: [
@@ -1723,11 +1745,12 @@ class DepositsContentListTenState extends State<DepositsContentListTen> {
             subtitleTwoColor: widget.subtitleTwoColor,
             showLeftWidget: false,
             image: "",
-            rightWidgetExpandSize: 6,
+            rightWidgetExpandSize: 7,
             rightWidget: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(right: 10.0),
+                  padding: const EdgeInsets.only(right: 3.0),
                   child: DepositsSubheadText(
                     text: widget.arrowText,
                     color: widget.arrowColor,
@@ -2197,58 +2220,61 @@ class DepositsContentStarterTwoState extends State<DepositsContentStarterTwo> {
   @override
   Widget build(BuildContext context) {
     return DepositsContentStarterMain(
-        title: widget.title,
-        titleColor: widget.titleColor,
-        subtitle: widget.subtitle,
-        subtitleColor: widget.subtitleColor,
-        image: widget.image,
-        imageColor: widget.imageBgColor,
-        imageHeight: widget.imageHeight,
-        bottomWidget: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            children: [
-              const VSpacerWidget(size: 5.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: DepositsButtonWithIconWidget(
-                      text: widget.buttonOneText,
-                      textColor: widget.buttonOneTextColor,
-                      bgColor: widget.buttonOneBgColor,
-                      borderColor: widget.buttonOneBorderColor,
-                      iconWidget: Icon(
-                        widget.buttonOneIcon,
-                        color: widget.buttonOneTextColor,
-                        size: 17.0,
-                      ),
-                      onPressed: () {
-                        widget.onButtonOneTapped();
-                      },
+      title: widget.title,
+      titleColor: widget.titleColor,
+      subtitle: widget.subtitle,
+      subtitleColor: widget.subtitleColor,
+      image: widget.image,
+      imageColor: widget.imageBgColor,
+      imageHeight: widget.imageHeight,
+      bottomWidget: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          children: [
+            const VSpacerWidget(size: 5.0),
+            Row(
+              children: [
+                Expanded(
+                  child: DepositsButtonWithIconWidget(
+                    text: widget.buttonOneText,
+                    textColor: widget.buttonOneTextColor,
+                    bgColor: widget.buttonOneBgColor,
+                    borderColor: widget.buttonOneBorderColor,
+                    size: DepositsButtonSize.huge,
+                    iconWidget: Icon(
+                      widget.buttonOneIcon,
+                      color: widget.buttonOneTextColor,
+                      size: 17.0,
                     ),
-                  )
-                ],
-              ),
-              const VSpacerWidget(size: 5.0),
-              Row(
-                children: [
-                  Expanded(
-                    child: DepositsButtonWidget(
-                      text: widget.buttonTwoText,
-                      textColor: widget.buttonTwoTextColor,
-                      bgColor: widget.buttonTwoBgColor,
-                      borderColor: widget.buttonTwoBorderColor,
-                      onPressed: () {
-                        widget.onButtonTwoTapped();
-                      },
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
+                    onPressed: () {
+                      widget.onButtonOneTapped();
+                    },
+                  ),
+                )
+              ],
+            ),
+            const VSpacerWidget(size: 5.0),
+            Row(
+              children: [
+                Expanded(
+                  child: DepositsButtonWidget(
+                    text: widget.buttonTwoText,
+                    textColor: widget.buttonTwoTextColor,
+                    bgColor: widget.buttonTwoBgColor,
+                    borderColor: widget.buttonTwoBorderColor,
+                    size: DepositsButtonSize.huge,
+                    onPressed: () {
+                      widget.onButtonTwoTapped();
+                    },
+                  ),
+                )
+              ],
+            )
+          ],
         ),
-        onTapped: widget.onTapped);
+      ),
+      onTapped: widget.onTapped,
+    );
   }
 }
 
@@ -2347,6 +2373,7 @@ class DepositsContentFeedbackOne extends StatefulWidget {
   final String subtitle;
   final Color subtitleColor;
   final String image;
+  final Widget widget;
   final Color bgColor;
   final Function onTapped;
 
@@ -2356,7 +2383,8 @@ class DepositsContentFeedbackOne extends StatefulWidget {
     this.titleColor = AppColors.textPrimaryColor,
     required this.subtitle,
     this.subtitleColor = AppColors.textPrimaryColor,
-    required this.image,
+    this.image = "",
+    required this.widget,
     this.bgColor = AppColors.whiteColor,
     required this.onTapped,
   });
@@ -2377,11 +2405,14 @@ class DepositsContentFeedbackOneState
   @override
   Widget build(BuildContext context) {
     return DepositsContentFeedbackMain(
-        title: widget.title,
-        titleColor: widget.titleColor,
-        subtitle: widget.subtitle,
-        subtitleColor: widget.subtitleColor,
-        imageWidget: ImageWidget(imageUrl: widget.image),
-        onTapped: widget.onTapped);
+      title: widget.title,
+      titleColor: widget.titleColor,
+      subtitle: widget.subtitle,
+      subtitleColor: widget.subtitleColor,
+      imageWidget: widget.image == ""
+          ? widget.widget
+          : ImageWidget(imageUrl: widget.image),
+      onTapped: widget.onTapped,
+    );
   }
 }

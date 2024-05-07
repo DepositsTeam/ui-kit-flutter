@@ -81,6 +81,7 @@ class DepositsPasswordInputState extends State<DepositsPasswordInput> {
   var iconSize = 16.0;
   var formFieldContentPadding = const EdgeInsets.fromLTRB(12.0, 0.0, 20.0, 0.0);
   var borderColor = AppColors.neutral300Color;
+  var psStrength = 0;
 
   @override
   void initState() {
@@ -93,7 +94,7 @@ class DepositsPasswordInputState extends State<DepositsPasswordInput> {
           formState = DepositsFormStates.cursor;
           resetValues();
         });
-        widget.onChanged(initialValue);
+        widget.onChanged(initialValue, psStrength);
       });
       setState(() {
         formState = widget.formState;
@@ -140,7 +141,7 @@ class DepositsPasswordInputState extends State<DepositsPasswordInput> {
   }
 
   managePasswordStrength(password) {
-    var psStrength = 0;
+    psStrength = 0;
     if (password.length > 6) {
       psError = 'Password must be longer than 6 characters.';
       psStrength = psStrength + 1;
@@ -229,20 +230,24 @@ class DepositsPasswordInputState extends State<DepositsPasswordInput> {
             enabled: formState == DepositsFormStates.disabled ? false : true,
             readOnly: widget.readOnly == true ? true : false,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+            ),
             decoration: InputDecoration(
               hintText: widget.placeholder,
               hintStyle: TextStyle(
-                  color: placeholderTextColor,
-                  fontWeight: placeholderFontWeight,
-                  fontSize: placeholderFontSize),
+                color: placeholderTextColor,
+                fontWeight: placeholderFontWeight,
+                fontSize: placeholderFontSize,
+              ),
               filled: true,
               fillColor: fillColor,
               contentPadding: formFieldContentPadding,
-              suffixIconConstraints:
-                  BoxConstraints(minHeight: suffixMinHeight, minWidth: 30),
+              suffixIconConstraints: BoxConstraints(
+                minHeight: suffixMinHeight,
+                minWidth: 30,
+              ),
               suffixIcon: GestureDetector(
                   onTap: () {
                     if (fieldController.text.isNotEmpty) {
@@ -295,7 +300,7 @@ class DepositsPasswordInputState extends State<DepositsPasswordInput> {
                 resetValues();
                 managePasswordStrength(a);
               });
-              widget.onChanged(a);
+              widget.onChanged(a, psStrength);
             },
           ),
         ),

@@ -265,7 +265,7 @@ class _DocPageState extends State<DocPage> {
               },
             ),
             ListTile(
-              title: const Text('Toast'),
+              title: const Text('Toast/Banners'),
               onTap: () {
                 setState(() {
                   section = 'toast';

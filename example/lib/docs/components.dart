@@ -294,6 +294,7 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
                 subtitle:
                     "You have enabled automatic savings on spend, your spare change will be kept when you spend.",
                 image: warningIcon,
+                widget: Container(),
                 onTapped: () {},
               ),
               const VSpacerWidget(size: 5.0),
@@ -302,6 +303,7 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
                 subtitle:
                     "You have enabled automatic savings on spend, your spare change will be kept when you spend.",
                 image: successIcon,
+                widget: Container(),
                 onTapped: () {},
               ),
               const VSpacerWidget(size: 5.0),
@@ -309,7 +311,22 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
                 title: "Payment failed",
                 subtitle:
                     "You have enabled automatic savings on spend, your spare change will be kept when you spend.",
-                image: errorIcon,
+                image: "",
+                widget: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 10.0,
+                    horizontal: 10.0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.errorColor,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: const Icon(
+                    Icons.close,
+                    color: AppColors.whiteColor,
+                    size: 30.0,
+                  ),
+                ),
                 onTapped: () {},
               ),
               const VSpacerWidget(size: 5.0),
@@ -408,22 +425,25 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
                 image: AppBankIcons.bankWellsFargo,
                 items: [
                   DepositsBankAccountListModel(
+                    id: "1",
                     name: "Bank of America",
                     bankLogo: DepositsBankLogos.bankBankOfAmerica.toString(),
                     description: "Ending ****8350",
                   ),
                   DepositsBankAccountListModel(
+                    id: "1",
                     name: "Bank of America",
                     bankLogo: DepositsBankLogos.bankBankOfAmerica.toString(),
                     description: "Ending ****9050",
                   ),
                   DepositsBankAccountListModel(
+                    id: "1",
                     name: "Bank of America",
                     bankLogo: DepositsBankLogos.bankBankOfAmerica.toString(),
                     description: "Ending ****8190",
                   ),
                 ],
-                onTapped: (a) {},
+                onTapped: () {},
               ),
               const VSpacerWidget(size: 10.0),
               DepositsListCardAccountSix(
@@ -696,48 +716,51 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
               ),
               const VSpacerWidget(size: 10.0),
               DepositsCardBorderedThree(
-                  title: "Round up to the nearest dollar",
-                  subtitle:
-                      "If you spend \$36.29, \$37 is deducted and \$0.71 is saved.",
-                  image: flashIcon,
-                  activeBankTitle: "Wells Fargo",
-                  activeBankSubtitle: "Ending ****8350",
-                  activeBankImage: AppBankIcons.bankWellsFargo.toString(),
-                  bankList: [
-                    DepositsBankAccountListModel(
-                      name: "Citi bank",
-                      bankLogo: AppBankIcons.bankCiti.toString(),
-                      description: "Ending ****8350",
-                    ),
-                    DepositsBankAccountListModel(
-                      name: "US bank",
-                      bankLogo: AppBankIcons.bankTemplateThree.toString(),
-                      description: "Ending ****9050",
-                    ),
-                    DepositsBankAccountListModel(
-                      name: "Bank of America",
-                      bankLogo: AppBankIcons.bankBankOfAmerica.toString(),
-                      description: "Ending ****8190",
-                    ),
-                  ],
-                  processingFeeIcon: Icons.info,
-                  processingFeeText:
-                      "You will be charged \$7.20 processing fee.",
-                  buttonText: "Add a new card",
-                  buttonIconWidget: Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                      color: const Color(0xff53E1C2),
-                    ),
-                    child: const Icon(
-                      Icons.add,
-                      size: 13.0,
-                      color: AppColors.whiteColor,
-                    ),
+                title: "Round up to the nearest dollar",
+                subtitle:
+                    "If you spend \$36.29, \$37 is deducted and \$0.71 is saved.",
+                image: flashIcon,
+                activeBankTitle: "Wells Fargo",
+                activeBankSubtitle: "Ending ****8350",
+                activeBankImage: AppBankIcons.bankWellsFargo.toString(),
+                bankList: [
+                  DepositsBankAccountListModel(
+                    id: "1",
+                    name: "Citi bank",
+                    bankLogo: AppBankIcons.bankCiti.toString(),
+                    description: "Ending ****8350",
                   ),
-                  onPressed: () {},
-                  onAccountChanged: (a) {}),
+                  DepositsBankAccountListModel(
+                    id: "1",
+                    name: "US bank",
+                    bankLogo: AppBankIcons.bankTemplateThree.toString(),
+                    description: "Ending ****9050",
+                  ),
+                  DepositsBankAccountListModel(
+                    id: "1",
+                    name: "Bank of America",
+                    bankLogo: AppBankIcons.bankBankOfAmerica.toString(),
+                    description: "Ending ****8190",
+                  ),
+                ],
+                processingFeeIcon: Icons.info,
+                processingFeeText: "You will be charged \$7.20 processing fee.",
+                buttonText: "Add a new card",
+                buttonIconWidget: Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    color: const Color(0xff53E1C2),
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    size: 13.0,
+                    color: AppColors.whiteColor,
+                  ),
+                ),
+                onPressed: () {},
+                onAccountChanged: () {},
+              ),
               const VSpacerWidget(size: 10.0),
               const DepositsH4Text(text: "Invoice widget"),
               const VSpacerWidget(size: 10.0),
@@ -755,21 +778,25 @@ class _ComponentsDocPageState extends State<ComponentsDocPage> {
                 totalText: "Total cost",
                 items: [
                   DepositsInvoiceItemModel(
+                    id: "1",
                     title: "Travel bag",
                     amount: 90.0,
                     currency: "\$",
                   ),
                   DepositsInvoiceItemModel(
+                    id: "1",
                     title: "Delivery",
                     amount: 55.0,
                     currency: "\$",
                   ),
                   DepositsInvoiceItemModel(
+                    id: "1",
                     title: "Catering",
                     amount: 23.0,
                     currency: "\$",
                   ),
                   DepositsInvoiceItemModel(
+                    id: "1",
                     title: "Transportation",
                     amount: 213.0,
                     currency: "\$",

@@ -53,9 +53,11 @@ class DepositsIosTabsState extends State<DepositsIosTabs> {
   Widget build(BuildContext context) {
     Widget result = Container(
       padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 5.0),
-      constraints: const BoxConstraints(maxHeight: 32.0),
+      constraints: const BoxConstraints(maxHeight: 33.0),
       decoration: BoxDecoration(
-          color: widget.bgColor, borderRadius: BorderRadius.circular(8.0)),
+        color: widget.bgColor,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
       child: Column(
         children: [
           widget.titles.isNotEmpty
@@ -63,25 +65,26 @@ class DepositsIosTabsState extends State<DepositsIosTabs> {
                   children: [
                     for (var i = 0; i < widget.titles.length; i++)
                       Expanded(
-                          child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            activeTab = widget.titles[i];
-                          });
-                          widget.onTapped(widget.titles[i]);
-                        },
-                        child: TabItem(
-                          thisTitle: widget.titles[i],
-                          isActive:
-                              activeTab == widget.titles[i] ? true : false,
-                          titleColor: widget.titleColor,
-                          activeBgColor: widget.activeBgColor,
-                          activeTitleColor: widget.activeTitleColor,
-                          index: i,
-                          activeIndex: widget.titles.indexOf(activeTab),
-                          titlesLength: widget.titles.length,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              activeTab = widget.titles[i];
+                            });
+                            widget.onTapped(widget.titles[i]);
+                          },
+                          child: TabItem(
+                            thisTitle: widget.titles[i],
+                            isActive:
+                                activeTab == widget.titles[i] ? true : false,
+                            titleColor: widget.titleColor,
+                            activeBgColor: widget.activeBgColor,
+                            activeTitleColor: widget.activeTitleColor,
+                            index: i,
+                            activeIndex: widget.titles.indexOf(activeTab),
+                            titlesLength: widget.titles.length,
+                          ),
                         ),
-                      )),
+                      ),
                   ],
                 )
               : Container()
@@ -129,28 +132,63 @@ class TabItem extends StatelessWidget {
       result = Container(
         padding: const EdgeInsets.symmetric(vertical: 3.0),
         margin: const EdgeInsets.symmetric(vertical: 2.0),
-        decoration: BoxDecoration(
-            color: AppColors.transparentColor,
-            border: showLeftBorder == true
-                ? const Border(
-                    left: BorderSide(
-                        width: 0.5, color: AppColors.neutral300Color))
-                : const Border()),
-        child: Center(
-          child: TextCustom(
-            text: thisTitle,
-            textFontSize: AppDimens.fontSize13,
-            color: titleColor,
-            fontWeight: FontWeight.w500,
-            fontFamily: DepositsFontFamilies.SFProText,
-          ),
+        decoration: const BoxDecoration(
+          color: AppColors.transparentColor,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 16.0,
+                padding: const EdgeInsets.only(
+                  right: 0.0,
+                ),
+                decoration: BoxDecoration(
+                  border: showLeftBorder == true
+                      ? const Border(
+                          left: BorderSide(
+                            width: 0.5,
+                            color: AppColors.neutral300Color,
+                          ),
+                        )
+                      : const Border(),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 10,
+              child: Center(
+                child: TextCustom(
+                  text: thisTitle,
+                  textFontSize: AppDimens.fontSize13,
+                  color: titleColor,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: DepositsFontFamilies.SFProText,
+                ),
+              ),
+            ),
+          ],
         ),
       );
     } else {
       result = Container(
         padding: const EdgeInsets.symmetric(vertical: 5.0),
         decoration: BoxDecoration(
-            color: activeBgColor, borderRadius: BorderRadius.circular(7.0)),
+          color: activeBgColor,
+          borderRadius: BorderRadius.circular(7.0),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.12),
+              blurRadius: 8.0,
+              offset: Offset(
+                0.0,
+                3.0,
+              ),
+            )
+          ],
+        ),
         child: Center(
           child: TextCustom(
             text: thisTitle,

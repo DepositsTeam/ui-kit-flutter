@@ -294,14 +294,9 @@ class TransactionItem extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                DepositsSubheadText(
-                  text: title,
-                  color: titleColor,
-                ),
-              ],
+            child: DepositsSubheadText(
+              text: title,
+              color: titleColor,
             ),
           ),
           Expanded(

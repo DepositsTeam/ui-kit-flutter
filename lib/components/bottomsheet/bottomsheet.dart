@@ -50,23 +50,24 @@ class DepositsBottomsheetState extends State<DepositsBottomsheet> {
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 2.0),
+            padding: const EdgeInsets.only(top: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   width: 36.0,
                   height: 5.0,
-                  margin: const EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.only(top: 0.0),
                   decoration: BoxDecoration(
-                      color: AppColors.neutral300Color,
-                      borderRadius: BorderRadius.circular(100)),
+                    color: AppColors.neutral300Color,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
                 )
               ],
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 2.0),
+            padding: const EdgeInsets.symmetric(vertical: 0.0),
             child: Column(
               children: [
                 Row(

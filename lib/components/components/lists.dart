@@ -2,6 +2,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:deposits_ui_kit_v2/deposits_ui_kit_v2.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DepositsListTransaction extends StatefulWidget {
   final String image;
@@ -68,7 +69,7 @@ class DepositsListTransactionState extends State<DepositsListTransaction> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    padding: const EdgeInsets.only(right: 3.0),
+                    padding: const EdgeInsets.only(right: 0.0),
                     child: DepositsImageAvatar(
                       imagePath: widget.image,
                       size: DepositsAvatarSizes.medium,
@@ -78,38 +79,38 @@ class DepositsListTransactionState extends State<DepositsListTransaction> {
                 Expanded(
                   flex: 6,
                   child: Container(
-                    padding: const EdgeInsets.only(right: 3.0),
-                    child: Row(
+                    padding: const EdgeInsets.only(
+                      right: 3.0,
+                      left: 5.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                DepositsH5Text(
-                                  text: widget.title,
-                                  color: widget.titleTextColor,
-                                ),
-                              ],
-                            ),
-                            const VSpacerWidget(size: 0.0),
-                            Row(
-                              children: [
-                                DepositsSubheadText(
-                                  text: widget.subtitle,
-                                  color: widget.subtitleTextColor,
-                                ),
-                              ],
+                            Expanded(
+                                child: DepositsH5Text(
+                              text: widget.title,
+                              color: widget.titleTextColor,
+                            )),
+                          ],
+                        ),
+                        const VSpacerWidget(size: 0.0),
+                        Row(
+                          children: [
+                            DepositsSubheadText(
+                              text: widget.subtitle,
+                              color: widget.subtitleTextColor,
                             ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -245,6 +246,7 @@ class DepositsListCardAccountMain extends StatefulWidget {
   final Color bgColor;
   final Widget rightWidget;
   final int rightWidgetExpandSize;
+  final int leftWidgetSize;
   final bool allowHorinzontalPadding;
   final Function onTapped;
 
@@ -258,6 +260,7 @@ class DepositsListCardAccountMain extends StatefulWidget {
     this.bgColor = AppColors.whiteColor,
     required this.rightWidget,
     this.rightWidgetExpandSize = 6,
+    this.leftWidgetSize = 2,
     this.allowHorinzontalPadding = true,
     required this.onTapped,
   });
@@ -277,6 +280,7 @@ class DepositsListCardAccountMainState
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return GestureDetector(
       onTap: () {
         widget.onTapped();
@@ -287,7 +291,9 @@ class DepositsListCardAccountMainState
           horizontal: widget.allowHorinzontalPadding == false ? 0.0 : 10.0,
         ),
         decoration: BoxDecoration(
-            color: widget.bgColor, borderRadius: BorderRadius.circular(6.0)),
+          color: widget.bgColor,
+          borderRadius: BorderRadius.circular(6.0),
+        ),
         child: Column(
           children: [
             Row(
@@ -295,7 +301,7 @@ class DepositsListCardAccountMainState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: widget.leftWidgetSize,
                   child: Row(
                     children: [
                       Container(
@@ -307,8 +313,10 @@ class DepositsListCardAccountMainState
                               ? 0.0
                               : 5.0,
                         ),
-                        constraints: const BoxConstraints(
-                            maxHeight: 40.0, maxWidth: 40.0),
+                        constraints: BoxConstraints(
+                          maxHeight: 38.w,
+                          maxWidth: 38.w,
+                        ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40.0),
                         ),
@@ -590,8 +598,8 @@ class DepositsListCardAccountThreeState
                         title: "",
                         formState: widget.formState,
                         selectedColor: widget.radioSelectedColor,
-                        onTapped: (a) {
-                          widget.onTapped(a);
+                        onTapped: () {
+                          widget.onTapped();
                         },
                       ),
                     ),
@@ -691,6 +699,7 @@ class DepositsListCardAccountFive extends StatefulWidget {
   final DepositsRadioFormState formState;
   final Color bgColor;
   final bool allowHorinzontalPadding;
+  final int leftWidgetSize;
   final Function onTapped;
 
   const DepositsListCardAccountFive({
@@ -704,6 +713,7 @@ class DepositsListCardAccountFive extends StatefulWidget {
     this.formState = DepositsRadioFormState.normal,
     this.bgColor = AppColors.whiteColor,
     this.allowHorinzontalPadding = true,
+    this.leftWidgetSize = 2,
     required this.onTapped,
   });
 
@@ -723,28 +733,29 @@ class DepositsListCardAccountFiveState
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      setState(
-        () {
-          title = widget.title;
-          subtitle = widget.subtitle;
-          image = widget.image;
-        },
-      );
+      // setState(
+      //   () {
+      //     title = widget.title;
+      //     subtitle = widget.subtitle;
+      //     image = widget.image;
+      //   },
+      // );
     });
-    for (var i = 0; i < widget.items.length; i++) {
-      items.add(widget.items[i].description);
-    }
+    // for (var i = 0; i < widget.items.length; i++) {
+    //   items.add(widget.items[i].description);
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     return DepositsListCardAccountMain(
-      title: title,
+      title: widget.title,
       titleColor: widget.titleColor,
-      subtitle: subtitle,
+      subtitle: widget.subtitle,
       subtitleColor: widget.subtitleColor,
-      image: image,
+      image: widget.image,
       allowHorinzontalPadding: widget.allowHorinzontalPadding,
+      leftWidgetSize: widget.leftWidgetSize,
       rightWidgetExpandSize: 6,
       rightWidget: Container(
         padding: const EdgeInsets.only(top: 10.0),
@@ -758,23 +769,13 @@ class DepositsListCardAccountFiveState
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 0.0),
                       width: 96.0,
-                      child: DepositsMiniDropDown(
-                        title: "",
-                        items: items,
-                        placeholder: "Change",
-                        onTapped: (a) {
-                          setState(() {
-                            for (var i = 0; i < widget.items.length; i++) {
-                              var thisItem = widget.items[i];
-                              if (thisItem.description.contains(a) == true) {
-                                title = thisItem.name;
-                                subtitle = thisItem.description;
-                                image = thisItem.bankLogo;
-                              }
-                            }
-                          });
-                          widget.onTapped(a);
+                      child: GestureDetector(
+                        onTap: () {
+                          widget.onTapped();
                         },
+                        child: const DepositsMiniDropdownTwo(
+                          title: "Change",
+                        ),
                       ),
                     ),
                   ],
@@ -946,6 +947,7 @@ class DepositsListCopyFieldState extends State<DepositsListCopyField> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return Container(
       padding: const EdgeInsets.symmetric(
         vertical: 10.0,
@@ -976,7 +978,7 @@ class DepositsListCopyFieldState extends State<DepositsListCopyField> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      constraints: const BoxConstraints(maxWidth: 160.0),
+                      constraints: BoxConstraints(maxWidth: 138.w),
                       child: DepositsH5Text(text: subtitle),
                     ),
                   ],

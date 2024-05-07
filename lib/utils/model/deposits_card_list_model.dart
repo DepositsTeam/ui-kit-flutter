@@ -1,12 +1,15 @@
 class DepositsCardListModel {
+  String id;
   String name;
   String cardBrandLogo;
   String description;
 
-  DepositsCardListModel(
-      {required this.name,
-      required this.cardBrandLogo,
-      required this.description});
+  DepositsCardListModel({
+    required this.id,
+    required this.name,
+    required this.cardBrandLogo,
+    required this.description,
+  });
 }
 
 class DepositsCardMobileTableModel {

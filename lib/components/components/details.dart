@@ -1,5 +1,6 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:deposits_ui_kit_v2/deposits_ui_kit_v2.dart';
+import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
 
 class DepositsDetailsCopyOne extends StatefulWidget {
@@ -77,7 +78,7 @@ class DepositsDetailsCopyOneState extends State<DepositsDetailsCopyOne> {
       ),
       decoration: BoxDecoration(
         color: widget.bgColor,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(0.0),
         border: Border(
           bottom: BorderSide(
             width: 0.5,
@@ -470,9 +471,12 @@ class DepositsDetailsMobileTableState
                                       ? MainAxisAlignment.end
                                       : MainAxisAlignment.center,
                           children: [
-                            DepositsSubheadText(
+                            TextCustom(
                               text: thisHead,
                               color: widget.headTextColor,
+                              fontWeight: FontWeight.w500,
+                              fontFamily: DepositsFontFamilies.CircularStd,
+                              textFontSize: AppDimens.fontSize14,
                             ),
                           ],
                         ),
@@ -514,9 +518,12 @@ class DepositsDetailsMobileTableState
                                   color: widget.iconColor,
                                 ),
                               ),
-                              DepositsBodyText(
+                              TextCustom(
                                 text: thisItem.card,
                                 color: widget.itemTextColor,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: DepositsFontFamilies.CircularStd,
+                                textFontSize: AppDimens.fontSize16,
                               ),
                             ],
                           ),
@@ -526,9 +533,12 @@ class DepositsDetailsMobileTableState
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              DepositsBodyText(
+                              TextCustom(
                                 text: thisItem.type,
                                 color: widget.itemTextColor,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: DepositsFontFamilies.CircularStd,
+                                textFontSize: AppDimens.fontSize16,
                               ),
                             ],
                           ),
@@ -538,9 +548,12 @@ class DepositsDetailsMobileTableState
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              DepositsBodyText(
+                              TextCustom(
                                 text: thisItem.balance,
                                 color: widget.itemTextColor,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: DepositsFontFamilies.CircularStd,
+                                textFontSize: AppDimens.fontSize16,
                               ),
                             ],
                           ),
@@ -1075,6 +1088,7 @@ class DepositsDetailsStackFormOneState
       titleColor: widget.titleColor,
       image: widget.image,
       isBold: true,
+      rightWidgetExpandSize: 4,
       rightWidget: Container(
         padding: const EdgeInsets.only(top: 0.0),
         child: Column(
@@ -1306,7 +1320,9 @@ class DepositsDetailsBalanceCardOneState
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        widget.onTapped!();
+        if (widget.onTapped != null) {
+          widget.onTapped!();
+        }
       },
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -1975,6 +1991,7 @@ class DepositsDetailsCollapsibleOneState
           Row(
             children: [
               Expanded(
+                flex: 7,
                 child: Row(
                   children: [
                     DepositsH5Text(
@@ -1985,6 +2002,7 @@ class DepositsDetailsCollapsibleOneState
                 ),
               ),
               Expanded(
+                flex: 4,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

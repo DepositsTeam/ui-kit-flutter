@@ -21,11 +21,11 @@ class DepositsButtonWithIconWidget extends StatefulWidget {
     required this.textColor,
     required this.bgColor,
     required this.borderColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     this.buttonType = DepositsButtonTypes.normal,
     required this.iconWidget,
-    this.buttonTextFontWeight = FontWeight.w600,
+    this.buttonTextFontWeight = FontWeight.w500,
     required this.onPressed,
   });
 
@@ -42,6 +42,8 @@ class DepositsButtonWithIconWidgetState
   Color bgColor = AppColors.transparentColor;
   Color textColor = AppColors.transparentColor;
   Color borderColor = AppColors.transparentColor;
+
+  double buttonHP = 10;
 
   @override
   void initState() {
@@ -74,6 +76,7 @@ class DepositsButtonWithIconWidgetState
       case DepositsButtonSize.large:
         textFontSize = AppDimens.fontSize14;
         buttonHeight = 40.0;
+        buttonHP = 6;
         break;
       case DepositsButtonSize.medium:
         textFontSize = AppDimens.fontSize12;
@@ -82,6 +85,7 @@ class DepositsButtonWithIconWidgetState
       case DepositsButtonSize.small:
         textFontSize = AppDimens.fontSize12;
         buttonHeight = 24.0;
+        buttonHP = 3;
         break;
       default:
     }
@@ -140,7 +144,10 @@ class DepositsButtonWithIconWidgetState
         foregroundColor: bgColor,
         shadowColor: borderColor,
         side: BorderSide(width: 1, color: borderColor),
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: buttonHP,
+          vertical: 0.0,
+        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6.0),
         ),
@@ -171,22 +178,23 @@ class DepositsButtonWithIconWidgetState
                         )
                       : Container(),
                   Expanded(
-                    flex: 10,
+                    flex: 9,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: const EdgeInsets.only(right: 5.0),
+                          padding: const EdgeInsets.only(right: 3.0),
                           child: widget.iconWidget,
                         ),
                         Text(
                           widget.text,
                           style: TextStyle(
-                              fontFamily:
-                                  DepositsFontFamilies.SFProDisplay.toString(),
-                              fontSize: textFontSize,
-                              color: textColor,
-                              fontWeight: widget.buttonTextFontWeight),
+                            fontFamily:
+                                DepositsFontFamilies.SFProDisplay.toString(),
+                            fontSize: textFontSize,
+                            color: textColor,
+                            fontWeight: widget.buttonTextFontWeight,
+                          ),
                         ),
                       ],
                     ),
@@ -205,7 +213,8 @@ class DepositsButtonWithIconWidgetState
                                 ),
                               )
                             ],
-                          ))
+                          ),
+                        )
                       : Container(),
                 ],
               )
@@ -234,7 +243,7 @@ class DepositsButtonWidget extends StatefulWidget {
     required this.textColor,
     required this.bgColor,
     required this.borderColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     this.buttonType = DepositsButtonTypes.normal,
     this.buttonTextFontWeight = FontWeight.w600,
@@ -276,7 +285,7 @@ class DepositsButtonWidgetPrimary extends StatefulWidget {
     super.key,
     required this.text,
     this.textColor = AppColors.textPrimaryColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     required this.onPressed,
   });
@@ -320,7 +329,7 @@ class DepositsButtonWidgetDefault extends StatefulWidget {
     super.key,
     required this.text,
     this.textColor = AppColors.textPrimaryColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     required this.onPressed,
   });
@@ -364,7 +373,7 @@ class DepositsButtonWidgetInvincible extends StatefulWidget {
     super.key,
     required this.text,
     this.textColor = AppColors.secondaryColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     required this.onPressed,
   });
@@ -408,7 +417,7 @@ class DepositsButtonWidgetOutline extends StatefulWidget {
     super.key,
     required this.text,
     this.textColor = AppColors.secondaryColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     required this.onPressed,
   });
@@ -452,7 +461,7 @@ class DepositsButtonWidgetError extends StatefulWidget {
     super.key,
     required this.text,
     this.textColor = AppColors.whiteColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     required this.onPressed,
   });
@@ -495,7 +504,7 @@ class DepositsButtonWidgetSuccess extends StatefulWidget {
     super.key,
     required this.text,
     this.textColor = AppColors.whiteColor,
-    this.size = DepositsButtonSize.large,
+    this.size = DepositsButtonSize.xLarge,
     this.state = DepositsButtonStates.normal,
     required this.onPressed,
   });

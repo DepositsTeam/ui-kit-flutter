@@ -4,8 +4,8 @@ import 'package:deposits_ui_kit_v2/resources/app_resources.dart';
 import 'package:deposits_ui_kit_v2/utils/helper.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class HrWidget extends StatelessWidget {
   final Color borderColor;
@@ -55,10 +55,10 @@ class VersionWidgetState extends State<VersionWidget> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      final pubspec = await rootBundle.loadString("pubspec.yaml");
+      var packageInfo = readYamlFile(pubspec);
       setState(() {
-        version = packageInfo.version;
-        buildNumber = packageInfo.buildNumber;
+        version = packageInfo['version'];
       });
     });
   }
@@ -68,7 +68,7 @@ class VersionWidgetState extends State<VersionWidget> {
     return Column(
       children: [
         DepositsButtonText(
-          text: "version: $version($buildNumber)",
+          text: "version: $version",
           color: AppColors.blackColor,
         )
       ],

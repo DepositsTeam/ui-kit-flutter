@@ -24,6 +24,10 @@ class _FormDocPageState extends State<FormDocPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                const DepositsMiniDropdownTwo(title: "Change"),
+                const SizedBox(
+                  height: 10.0,
+                ),
                 const HrWidget(borderColor: AppColors.blackColor),
                 DepositsDatePicker(
                   title: "Date of Birth",

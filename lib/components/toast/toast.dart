@@ -97,11 +97,12 @@ class DepositsToastState extends State<DepositsToast> {
       child: Visibility(
         visible: visible,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 10.0),
           decoration: BoxDecoration(
-              color: widget.bgColor,
-              borderRadius: BorderRadius.circular(4.0),
-              border: border),
+            color: widget.bgColor,
+            borderRadius: BorderRadius.circular(4.0),
+            border: border,
+          ),
           child: Column(
             children: [
               Row(
@@ -115,7 +116,7 @@ class DepositsToastState extends State<DepositsToast> {
                             children: [
                               Container(
                                 padding: const EdgeInsets.only(
-                                  right: 10.0,
+                                  right: 5.0,
                                   top: 3.0,
                                 ),
                                 child: Icon(
@@ -133,15 +134,11 @@ class DepositsToastState extends State<DepositsToast> {
                     child: Column(
                       children: [
                         widget.title != ""
-                            ? Row(
-                                children: [
-                                  TextCustom(
-                                    text: widget.title,
-                                    textFontSize: AppDimens.fontSize14,
-                                    color: widget.titleColor,
-                                    fontWeight: FontWeight.w500,
-                                  )
-                                ],
+                            ? TextCustom(
+                                text: widget.title,
+                                textFontSize: AppDimens.fontSize14,
+                                color: widget.titleColor,
+                                fontWeight: FontWeight.w500,
                               )
                             : Container(),
                         widget.description != null && widget.description != ""

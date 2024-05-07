@@ -76,7 +76,7 @@ class DepositsRadioState extends State<DepositsRadio> {
             resetValues();
           });
         }
-        widget.onTapped;
+        widget.onTapped();
       },
       child: Column(
         children: [
@@ -88,10 +88,13 @@ class DepositsRadioState extends State<DepositsRadio> {
                     width: 16.0,
                     height: 16.0,
                     decoration: BoxDecoration(
-                        color: outerRingColor,
-                        borderRadius: BorderRadius.circular(10.0),
-                        border: Border.all(
-                            width: 1.0, color: outerRingBorderColor)),
+                      color: outerRingColor,
+                      borderRadius: BorderRadius.circular(10.0),
+                      border: Border.all(
+                        width: 1.0,
+                        color: outerRingBorderColor,
+                      ),
+                    ),
                     child: Center(
                       child: Container(
                         width: 6.0,

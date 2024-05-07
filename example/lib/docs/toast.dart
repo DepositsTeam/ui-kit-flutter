@@ -9,9 +9,6 @@ class ToastDocPage extends StatefulWidget {
 }
 
 class _ToastDocPageState extends State<ToastDocPage> {
-  String? selectedValue;
-  final TextEditingController textEditingController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Container(

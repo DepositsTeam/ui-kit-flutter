@@ -5,6 +5,7 @@ import 'package:deposits_ui_kit_v2/utils/model/country_model.dart';
 import 'package:deposits_ui_kit_v2/utils/model/state_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:yaml/yaml.dart';
 
 getCountry() async {
   String link = 'packages/deposits_ui_kit_v2/assets/custom_json/country.json';
@@ -91,4 +92,8 @@ Color lightenColor(Color color, [double amount = .1]) {
   final hslLight = hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
 
   return hslLight.toColor();
+}
+
+readYamlFile(a) {
+  return loadYaml(a);
 }

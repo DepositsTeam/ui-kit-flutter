@@ -8,6 +8,7 @@ import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
 
 class DepositsFormField extends StatefulWidget {
@@ -23,6 +24,7 @@ class DepositsFormField extends StatefulWidget {
   final Color borderColorError;
   final Color borderColorNormal;
   final Color borderColorDisabled;
+  final int maxChar;
   final TextInputType keyboardType;
   final Function onTapped;
 
@@ -41,6 +43,7 @@ class DepositsFormField extends StatefulWidget {
     this.borderColorNormal = AppColors.neutral300Color,
     this.borderColorDisabled = AppColors.neutral300Color,
     this.keyboardType = TextInputType.text,
+    this.maxChar = 2000,
     required this.onTapped,
   });
 
@@ -51,7 +54,7 @@ class DepositsFormField extends StatefulWidget {
 }
 
 class DepositsFormFieldState extends State<DepositsFormField> {
-  var initialValue = "";
+  var valueController = TextEditingController();
   DepositsFormStates formState = DepositsFormStates.normal;
 
   var fillColor = AppColors.transparentColor;
@@ -84,7 +87,9 @@ class DepositsFormFieldState extends State<DepositsFormField> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         formState = widget.formState;
-        initialValue = "${widget.initialValue}";
+        if (widget.initialValue != null) {
+          valueController.text = "${widget.initialValue}";
+        }
         resetValues();
       });
     });
@@ -136,16 +141,21 @@ class DepositsFormFieldState extends State<DepositsFormField> {
         SizedBox(
           height: formFieldheight,
           child: TextFormField(
-            initialValue: initialValue,
+            controller: valueController,
             cursorColor: AppColors.neutral700Color,
             cursorHeight: cursorHeight,
             enabled: formState == DepositsFormStates.disabled ? false : true,
             readOnly: widget.readOnly == 'true' ? true : false,
+            maxLength: widget.maxChar,
             style: TextStyle(
                 color: inputTextColor,
                 fontSize: inputFontSize,
                 fontWeight: inputFontWeight),
             decoration: InputDecoration(
+              counterText: "",
+              counterStyle: const TextStyle(
+                height: double.minPositive,
+              ),
               hintText: widget.placeholder,
               hintStyle: TextStyle(
                   color: placeholderTextColor,
@@ -154,13 +164,15 @@ class DepositsFormFieldState extends State<DepositsFormField> {
               filled: true,
               fillColor: fillColor,
               contentPadding: formFieldContentPadding,
-              suffixIconConstraints:
-                  BoxConstraints(minHeight: suffixMinHeight, minWidth: 40),
+              suffixIconConstraints: BoxConstraints(
+                minHeight: suffixMinHeight,
+                minWidth: 40,
+              ),
               suffixIcon: formState == DepositsFormStates.cursor
                   ? GestureDetector(
                       onTap: () {
                         setState(() {
-                          initialValue = "";
+                          valueController.clear();
                           resetValues();
                         });
                       },
@@ -283,7 +295,7 @@ class DepositsTextArea extends StatefulWidget {
 }
 
 class DepositsTextAreaState extends State<DepositsTextArea> {
-  var initialValue = "";
+  var valueController = TextEditingController();
   DepositsFormStates formState = DepositsFormStates.normal;
 
   var fillColor = AppColors.transparentColor;
@@ -316,7 +328,9 @@ class DepositsTextAreaState extends State<DepositsTextArea> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         formState = widget.formState;
-        initialValue = "${widget.initialValue}";
+        if (widget.initialValue != null) {
+          valueController.text = "${widget.initialValue}";
+        }
         resetValues();
       });
     });
@@ -356,7 +370,7 @@ class DepositsTextAreaState extends State<DepositsTextArea> {
         SizedBox(
           // height: formFieldheight,
           child: TextFormField(
-            initialValue: initialValue,
+            controller: valueController,
             cursorColor: AppColors.neutral700Color,
             cursorHeight: cursorHeight,
             enabled: formState == DepositsFormStates.disabled ? false : true,
@@ -488,7 +502,7 @@ class DepositsSearchInput extends StatefulWidget {
 }
 
 class DepositsSearchInputState extends State<DepositsSearchInput> {
-  var initialValue = "";
+  var valueController = TextEditingController();
   DepositsFormStates formState = DepositsFormStates.normal;
 
   var fillColor = AppColors.transparentColor;
@@ -521,7 +535,9 @@ class DepositsSearchInputState extends State<DepositsSearchInput> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         formState = widget.formState;
-        initialValue = "${widget.initialValue}";
+        if (widget.initialValue != null) {
+          valueController.text = "${widget.initialValue}";
+        }
         resetValues();
       });
     });
@@ -562,7 +578,7 @@ class DepositsSearchInputState extends State<DepositsSearchInput> {
         SizedBox(
           height: formFieldheight,
           child: TextFormField(
-            initialValue: initialValue,
+            controller: valueController,
             cursorColor: AppColors.neutral700Color,
             cursorHeight: cursorHeight,
             enabled: formState == DepositsFormStates.disabled ? false : true,
@@ -591,7 +607,7 @@ class DepositsSearchInputState extends State<DepositsSearchInput> {
               suffixIcon: formState == DepositsFormStates.cursor
                   ? GestureDetector(
                       onTap: () {
-                        initialValue = "";
+                        valueController.clear();
                         setState(() {
                           resetValues();
                         });
@@ -692,24 +708,27 @@ class DepositsPhoneInput extends StatefulWidget {
   final Color borderColorError;
   final Color borderColorNormal;
   final Color borderColorDisabled;
+  final int maxChar;
   final Function onTapped;
 
-  const DepositsPhoneInput(
-      {super.key,
-      required this.title,
-      this.countryCode,
-      this.placeholder,
-      this.size = DepositsFormSizeStates.medium,
-      this.errorText,
-      this.initialValue,
-      this.formState = DepositsFormStates.normal,
-      this.readOnly = "false",
-      this.bgColor,
-      this.borderColorActive = AppColors.primaryColor,
-      this.borderColorError = AppColors.red500Color,
-      this.borderColorNormal = AppColors.neutral300Color,
-      this.borderColorDisabled = AppColors.neutral300Color,
-      required this.onTapped});
+  const DepositsPhoneInput({
+    super.key,
+    required this.title,
+    this.countryCode,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.errorText,
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.readOnly = "false",
+    this.bgColor,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    this.maxChar = 20,
+    required this.onTapped,
+  });
 
   @override
   DepositsPhoneInputState createState() {
@@ -718,7 +737,7 @@ class DepositsPhoneInput extends StatefulWidget {
 }
 
 class DepositsPhoneInputState extends State<DepositsPhoneInput> {
-  var initialValue = "";
+  var valueController = TextEditingController();
   DepositsFormStates formState = DepositsFormStates.normal;
 
   var fillColor = AppColors.transparentColor;
@@ -745,7 +764,7 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
   var formFieldContentPadding = const EdgeInsets.fromLTRB(12.0, 0.0, 20.0, 0.0);
   var borderColor = AppColors.neutral300Color;
 
-  var countryCodeColor = AppColors.neutral300Color;
+  var countryCodeColor = AppColors.neutral700Color;
 
   @override
   void initState() {
@@ -753,7 +772,9 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
         formState = widget.formState;
-        initialValue = "${widget.initialValue}";
+        if (widget.initialValue != null) {
+          valueController.text = "${widget.initialValue}";
+        }
         resetValues();
       });
     });
@@ -810,16 +831,21 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
         SizedBox(
           height: formFieldheight,
           child: TextFormField(
-            initialValue: initialValue,
+            controller: valueController,
             cursorColor: AppColors.neutral700Color,
             cursorHeight: cursorHeight,
             enabled: formState == DepositsFormStates.disabled ? false : true,
             readOnly: widget.readOnly == 'true' ? true : false,
+            maxLength: widget.maxChar,
             style: TextStyle(
                 color: inputTextColor,
                 fontSize: inputFontSize,
                 fontWeight: inputFontWeight),
             decoration: InputDecoration(
+              counterText: "",
+              counterStyle: const TextStyle(
+                height: double.minPositive,
+              ),
               hintText: widget.placeholder,
               hintStyle: TextStyle(
                   color: placeholderTextColor,
@@ -830,30 +856,45 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
               contentPadding: formFieldContentPadding,
               prefixIcon: Container(
                 height: 24.0,
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: Container(
-                  width: 20.0,
-                  height: 24.0,
-                  margin: const EdgeInsets.only(right: 5.0),
-                  decoration: BoxDecoration(
-                      border: Border(
-                          right:
-                              BorderSide(width: 1.0, color: countryCodeColor))),
-                  child: Center(
-                    child: TextCustom(
+                width: 27.0,
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: TextCustom(
                         text: "${widget.countryCode}",
-                        textFontSize: AppDimens.fontSize14,
+                        textFontSize: AppDimens.fontSize16,
                         color: countryCodeColor,
-                        fontWeight: FontWeight.w400),
-                  ),
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    Container(
+                      height: 18.0,
+                      margin: const EdgeInsets.only(
+                        right: 2.0,
+                        left: 8.0,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          right: BorderSide(
+                            width: 1.0,
+                            color: borderColor,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              suffixIconConstraints:
-                  BoxConstraints(minHeight: suffixMinHeight, minWidth: 40),
+              suffixIconConstraints: BoxConstraints(
+                minHeight: suffixMinHeight,
+                minWidth: 40,
+              ),
               suffixIcon: formState == DepositsFormStates.cursor
                   ? GestureDetector(
                       onTap: () {
-                        initialValue = "";
+                        valueController.clear();
                         setState(() {
                           resetValues();
                         });
@@ -896,6 +937,11 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
               widget.onTapped(a);
             },
             keyboardType: TextInputType.number,
+            inputFormatters: [
+              MaskedInputFormatter(
+                '(###) ### ####',
+              )
+            ],
           ),
         ),
         widget.errorText.toString().isNotEmpty
@@ -1096,8 +1142,10 @@ class DepositsNumberInputState extends State<DepositsNumberInput> {
               filled: true,
               fillColor: fillColor,
               contentPadding: formFieldContentPadding,
-              suffixIconConstraints:
-                  BoxConstraints(minHeight: suffixMinHeight, minWidth: 30),
+              suffixIconConstraints: BoxConstraints(
+                minHeight: suffixMinHeight,
+                minWidth: 30,
+              ),
               suffixIcon: SizedBox(
                 width: 40.0,
                 child: Column(
@@ -1169,6 +1217,7 @@ class DepositsNumberInputState extends State<DepositsNumberInput> {
             ),
             onChanged: (a) {
               initialValue = a;
+              fieldController.text = a;
               setState(() {
                 formState = DepositsFormStates.cursor;
                 resetValues();
@@ -2987,6 +3036,580 @@ class DepositsDatePickerState extends State<DepositsDatePicker> {
                 )
               ],
             ),
+          ),
+        ),
+        widget.errorText.toString().isNotEmpty
+            ? Container(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(right: 5.0),
+                              child: const Icon(
+                                Icons.info,
+                                size: 10.0,
+                                color: AppColors.red500Color,
+                              ),
+                            )
+                          ],
+                        ),
+                        Expanded(
+                            child: TextCustom(
+                                text: "${widget.errorText}",
+                                textFontSize: errorFontSize,
+                                color: errorTextColor,
+                                fontWeight: errorFontWeight))
+                      ],
+                    )
+                  ],
+                ),
+              )
+            : Container(),
+      ],
+    );
+    return result;
+  }
+}
+
+class DepositsMiniDropdownTwo extends StatelessWidget {
+  final String title;
+  final Color bgColor;
+  final Color textColor;
+  final Color arrowColor;
+  const DepositsMiniDropdownTwo({
+    super.key,
+    required this.title,
+    this.bgColor = const Color(0xffF4F6F8),
+    this.textColor = const Color(0xff6D7786),
+    this.arrowColor = const Color(0xff6D7786),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 96.0,
+      height: 31.0,
+      decoration: BoxDecoration(
+        color: bgColor,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: 2.0,
+        horizontal: 5.0,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              TextCustom(
+                text: title,
+                textFontSize: AppDimens.fontSize12,
+                color: textColor,
+                fontWeight: FontWeight.w400,
+                fontFamily: DepositsFontFamilies.HeroNew,
+              ),
+              Container(
+                margin: const EdgeInsets.only(
+                  left: 5.0,
+                ),
+                padding: const EdgeInsets.only(
+                  left: 2.0,
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.arrow_drop_down,
+                    color: arrowColor,
+                  ),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DepositsCardNumberInput extends StatefulWidget {
+  final String title;
+  final String? countryCode;
+  final String? placeholder;
+  final DepositsFormSizeStates size;
+  final String? errorText;
+  final String? initialValue;
+  final DepositsFormStates formState;
+  final String? readOnly;
+  final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
+  final int maxChar;
+  final Function onTapped;
+
+  const DepositsCardNumberInput({
+    super.key,
+    required this.title,
+    this.countryCode,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.errorText,
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.readOnly = "false",
+    this.bgColor,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    this.maxChar = 20,
+    required this.onTapped,
+  });
+
+  @override
+  DepositsCardNumberInputState createState() {
+    return DepositsCardNumberInputState();
+  }
+}
+
+class DepositsCardNumberInputState extends State<DepositsCardNumberInput> {
+  var valueController = TextEditingController();
+  DepositsFormStates formState = DepositsFormStates.normal;
+
+  var fillColor = AppColors.transparentColor;
+
+  var titleFontSize = AppDimens.fontSize16;
+  var titleTextColor = AppColors.neutral700Color;
+  var titleFontWeight = FontWeight.w400;
+
+  var placeholderFontSize = AppDimens.fontSize16;
+  var placeholderTextColor = AppColors.neutral300Color;
+  var placeholderFontWeight = FontWeight.w400;
+
+  var inputFontSize = AppDimens.fontSize14;
+  var inputTextColor = AppColors.neutral700Color;
+  var inputFontWeight = FontWeight.w400;
+
+  var errorFontSize = AppDimens.fontSize12;
+  var errorTextColor = AppColors.red500Color;
+  var errorFontWeight = FontWeight.w400;
+
+  var formFieldheight = 48.0;
+  var cursorHeight = 18.0;
+  var suffixMinHeight = 28.0;
+  var formFieldContentPadding = const EdgeInsets.fromLTRB(12.0, 0.0, 20.0, 0.0);
+  var borderColor = AppColors.neutral300Color;
+
+  var countryCodeColor = AppColors.neutral700Color;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        formState = widget.formState;
+        if (widget.initialValue != null) {
+          valueController.text = "${widget.initialValue}";
+        }
+        resetValues();
+      });
+    });
+  }
+
+  resetValues() {
+    if (widget.size == DepositsFormSizeStates.small) {
+      formFieldheight = 40.0;
+      cursorHeight = 14.0;
+
+      inputFontSize = AppDimens.fontSize12;
+    } else if (widget.size == DepositsFormSizeStates.large) {
+      formFieldheight = 56.0;
+      cursorHeight = 25.0;
+
+      inputFontSize = AppDimens.fontSize16;
+    }
+    borderColor = widget.borderColorNormal;
+    fillColor = AppColors.transparentColor;
+    if (formState == DepositsFormStates.active ||
+        formState == DepositsFormStates.cursor) {
+      borderColor = widget.borderColorActive;
+      countryCodeColor = titleTextColor;
+    } else if (formState == DepositsFormStates.error) {
+      placeholderTextColor = AppColors.neutral700Color;
+      fillColor = AppColors.red150Color;
+      borderColor = widget.borderColorError;
+      countryCodeColor = titleTextColor;
+    } else if (formState == DepositsFormStates.disabled) {
+      placeholderTextColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
+      countryCodeColor = placeholderTextColor;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget result = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: TextCustom(
+                  text: widget.title,
+                  textFontSize: titleFontSize,
+                  color: titleTextColor,
+                  fontWeight: titleFontWeight),
+            )
+          ],
+        ),
+        SizedBox(
+          height: formFieldheight,
+          child: TextFormField(
+            controller: valueController,
+            cursorColor: AppColors.neutral700Color,
+            cursorHeight: cursorHeight,
+            enabled: formState == DepositsFormStates.disabled ? false : true,
+            readOnly: widget.readOnly == 'true' ? true : false,
+            maxLength: widget.maxChar,
+            style: TextStyle(
+                color: inputTextColor,
+                fontSize: inputFontSize,
+                fontWeight: inputFontWeight),
+            decoration: InputDecoration(
+              counterText: "",
+              counterStyle: const TextStyle(
+                height: double.minPositive,
+              ),
+              hintText: widget.placeholder,
+              hintStyle: TextStyle(
+                  color: placeholderTextColor,
+                  fontWeight: placeholderFontWeight,
+                  fontSize: placeholderFontSize),
+              filled: true,
+              fillColor: fillColor,
+              contentPadding: formFieldContentPadding,
+              suffixIconConstraints: BoxConstraints(
+                minHeight: suffixMinHeight,
+                minWidth: 40,
+              ),
+              suffixIcon: formState == DepositsFormStates.cursor
+                  ? GestureDetector(
+                      onTap: () {
+                        valueController.clear();
+                        setState(() {
+                          resetValues();
+                        });
+                      },
+                      child: const Icon(
+                        Icons.cancel,
+                        size: 18.0,
+                        color: AppColors.neutral400Color,
+                      ))
+                  : null,
+              border: OutlineInputBorder(
+                  borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                  borderSide: BorderSide(width: 1.0, color: borderColor)),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+            ),
+            onChanged: (a) {
+              setState(() {
+                formState = DepositsFormStates.cursor;
+                resetValues();
+              });
+              widget.onTapped(a);
+            },
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              MaskedInputFormatter(
+                '#### #### #### #### ####',
+              )
+            ],
+          ),
+        ),
+        widget.errorText.toString().isNotEmpty
+            ? Container(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(right: 5.0),
+                              child: const Icon(
+                                Icons.info,
+                                size: 10.0,
+                                color: AppColors.red500Color,
+                              ),
+                            )
+                          ],
+                        ),
+                        Expanded(
+                            child: TextCustom(
+                                text: "${widget.errorText}",
+                                textFontSize: errorFontSize,
+                                color: errorTextColor,
+                                fontWeight: errorFontWeight))
+                      ],
+                    )
+                  ],
+                ),
+              )
+            : Container(),
+      ],
+    );
+    return result;
+  }
+}
+
+class DepositsCardExpiryInput extends StatefulWidget {
+  final String title;
+  final String? countryCode;
+  final String? placeholder;
+  final DepositsFormSizeStates size;
+  final String? errorText;
+  final String? initialValue;
+  final DepositsFormStates formState;
+  final String? readOnly;
+  final Color? bgColor;
+  final Color borderColorActive;
+  final Color borderColorError;
+  final Color borderColorNormal;
+  final Color borderColorDisabled;
+  final int maxChar;
+  final Function onTapped;
+
+  const DepositsCardExpiryInput({
+    super.key,
+    required this.title,
+    this.countryCode,
+    this.placeholder,
+    this.size = DepositsFormSizeStates.medium,
+    this.errorText,
+    this.initialValue,
+    this.formState = DepositsFormStates.normal,
+    this.readOnly = "false",
+    this.bgColor,
+    this.borderColorActive = AppColors.primaryColor,
+    this.borderColorError = AppColors.red500Color,
+    this.borderColorNormal = AppColors.neutral300Color,
+    this.borderColorDisabled = AppColors.neutral300Color,
+    this.maxChar = 20,
+    required this.onTapped,
+  });
+
+  @override
+  DepositsCardExpiryInputState createState() {
+    return DepositsCardExpiryInputState();
+  }
+}
+
+class DepositsCardExpiryInputState extends State<DepositsCardExpiryInput> {
+  var valueController = TextEditingController();
+  DepositsFormStates formState = DepositsFormStates.normal;
+
+  var fillColor = AppColors.transparentColor;
+
+  var titleFontSize = AppDimens.fontSize16;
+  var titleTextColor = AppColors.neutral700Color;
+  var titleFontWeight = FontWeight.w400;
+
+  var placeholderFontSize = AppDimens.fontSize16;
+  var placeholderTextColor = AppColors.neutral300Color;
+  var placeholderFontWeight = FontWeight.w400;
+
+  var inputFontSize = AppDimens.fontSize14;
+  var inputTextColor = AppColors.neutral700Color;
+  var inputFontWeight = FontWeight.w400;
+
+  var errorFontSize = AppDimens.fontSize12;
+  var errorTextColor = AppColors.red500Color;
+  var errorFontWeight = FontWeight.w400;
+
+  var formFieldheight = 48.0;
+  var cursorHeight = 18.0;
+  var suffixMinHeight = 28.0;
+  var formFieldContentPadding = const EdgeInsets.fromLTRB(12.0, 0.0, 20.0, 0.0);
+  var borderColor = AppColors.neutral300Color;
+
+  var countryCodeColor = AppColors.neutral700Color;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        formState = widget.formState;
+        if (widget.initialValue != null) {
+          valueController.text = "${widget.initialValue}";
+        }
+        resetValues();
+      });
+    });
+  }
+
+  resetValues() {
+    if (widget.size == DepositsFormSizeStates.small) {
+      formFieldheight = 40.0;
+      cursorHeight = 14.0;
+
+      inputFontSize = AppDimens.fontSize12;
+    } else if (widget.size == DepositsFormSizeStates.large) {
+      formFieldheight = 56.0;
+      cursorHeight = 25.0;
+
+      inputFontSize = AppDimens.fontSize16;
+    }
+    borderColor = widget.borderColorNormal;
+    fillColor = AppColors.transparentColor;
+    if (formState == DepositsFormStates.active ||
+        formState == DepositsFormStates.cursor) {
+      borderColor = widget.borderColorActive;
+      countryCodeColor = titleTextColor;
+    } else if (formState == DepositsFormStates.error) {
+      placeholderTextColor = AppColors.neutral700Color;
+      fillColor = AppColors.red150Color;
+      borderColor = widget.borderColorError;
+      countryCodeColor = titleTextColor;
+    } else if (formState == DepositsFormStates.disabled) {
+      placeholderTextColor = AppColors.neutral300Color;
+      borderColor = widget.borderColorDisabled;
+      countryCodeColor = placeholderTextColor;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget result = Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: TextCustom(
+                  text: widget.title,
+                  textFontSize: titleFontSize,
+                  color: titleTextColor,
+                  fontWeight: titleFontWeight),
+            )
+          ],
+        ),
+        SizedBox(
+          height: formFieldheight,
+          child: TextFormField(
+            controller: valueController,
+            cursorColor: AppColors.neutral700Color,
+            cursorHeight: cursorHeight,
+            enabled: formState == DepositsFormStates.disabled ? false : true,
+            readOnly: widget.readOnly == 'true' ? true : false,
+            maxLength: widget.maxChar,
+            style: TextStyle(
+                color: inputTextColor,
+                fontSize: inputFontSize,
+                fontWeight: inputFontWeight),
+            decoration: InputDecoration(
+              counterText: "",
+              counterStyle: const TextStyle(
+                height: double.minPositive,
+              ),
+              hintText: widget.placeholder,
+              hintStyle: TextStyle(
+                  color: placeholderTextColor,
+                  fontWeight: placeholderFontWeight,
+                  fontSize: placeholderFontSize),
+              filled: true,
+              fillColor: fillColor,
+              contentPadding: formFieldContentPadding,
+              suffixIconConstraints: BoxConstraints(
+                minHeight: suffixMinHeight,
+                minWidth: 40,
+              ),
+              suffixIcon: formState == DepositsFormStates.cursor
+                  ? GestureDetector(
+                      onTap: () {
+                        valueController.clear();
+                        setState(() {
+                          resetValues();
+                        });
+                      },
+                      child: const Icon(
+                        Icons.cancel,
+                        size: 18.0,
+                        color: AppColors.neutral400Color,
+                      ))
+                  : null,
+              border: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(4.0),
+                ),
+                borderSide: BorderSide(
+                  width: 1.0,
+                  color: borderColor,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: borderColor,
+                ),
+              ),
+            ),
+            onChanged: (a) {
+              setState(() {
+                formState = DepositsFormStates.cursor;
+                resetValues();
+              });
+              widget.onTapped(a);
+            },
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              MaskedInputFormatter(
+                '## / ####',
+              )
+            ],
           ),
         ),
         widget.errorText.toString().isNotEmpty

@@ -110,11 +110,13 @@ class DepositsH1TextState extends State<DepositsH1Text> {
 class DepositsH2Text extends StatefulWidget {
   final String text;
   final Color color;
+  final TextAlign textAlign;
 
   const DepositsH2Text({
     super.key,
     required this.text,
     this.color = AppColors.textPrimaryColor,
+    this.textAlign = TextAlign.left,
   });
 
   @override
@@ -133,11 +135,13 @@ class DepositsH2TextState extends State<DepositsH2Text> {
   Widget build(BuildContext context) {
     return Text(
       widget.text,
+      textAlign: widget.textAlign,
       style: TextStyle(
-          fontFamily: DepositsFontFamilies.SFProDisplay.toString(),
-          fontSize: 26,
-          color: widget.color,
-          fontWeight: FontWeight.w600),
+        fontFamily: DepositsFontFamilies.SFProDisplay.toString(),
+        fontSize: 26,
+        color: widget.color,
+        fontWeight: FontWeight.w600,
+      ),
     );
   }
 }
@@ -334,12 +338,14 @@ class DepositsSubheadText extends StatefulWidget {
   final String text;
   final Color color;
   final TextAlign textAlign;
+  final FontWeight fontWeight;
 
   const DepositsSubheadText({
     super.key,
     required this.text,
     this.color = AppColors.textPrimaryColor,
     this.textAlign = TextAlign.left,
+    this.fontWeight = FontWeight.normal,
   });
 
   @override
@@ -363,7 +369,7 @@ class DepositsSubheadTextState extends State<DepositsSubheadText> {
         fontFamily: DepositsFontFamilies.SFProText.toString(),
         fontSize: 14,
         color: widget.color,
-        fontWeight: FontWeight.normal,
+        fontWeight: widget.fontWeight,
       ),
     );
   }

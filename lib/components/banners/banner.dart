@@ -2,6 +2,7 @@ import 'package:deposits_ui_kit_v2/components/utils/all.dart';
 import 'package:deposits_ui_kit_v2/resources/app_resources.dart';
 import 'package:deposits_ui_kit_v2/utils/templates.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DepositsBanner extends StatefulWidget {
   final String title;
@@ -14,21 +15,24 @@ class DepositsBanner extends StatefulWidget {
   final Color iconColor;
   final bool? showCloseButton;
   final bool? closeOnTap;
+  final double sizePercent;
   final Function? onTapped;
 
-  const DepositsBanner(
-      {super.key,
-      required this.title,
-      this.description,
-      required this.toastState,
-      required this.titleColor,
-      this.descriptionColor,
-      required this.bgColor,
-      required this.borderColor,
-      required this.iconColor,
-      this.showCloseButton = false,
-      this.closeOnTap = false,
-      required this.onTapped});
+  const DepositsBanner({
+    super.key,
+    required this.title,
+    this.description,
+    required this.toastState,
+    required this.titleColor,
+    this.descriptionColor,
+    required this.bgColor,
+    required this.borderColor,
+    required this.iconColor,
+    this.showCloseButton = false,
+    this.closeOnTap = false,
+    this.sizePercent = 0.68,
+    required this.onTapped,
+  });
 
   @override
   DepositsBannerState createState() {
@@ -89,6 +93,11 @@ class DepositsBannerState extends State<DepositsBanner> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
+    double sw = 0.70.sw;
+    if (toastState != DepositsToastStates.normal) {
+      sw = 0.65.sw;
+    }
     Widget result = Row(
       children: [
         GestureDetector(
@@ -103,84 +112,99 @@ class DepositsBannerState extends State<DepositsBanner> {
             widget.onTapped;
           },
           child: Visibility(
-              visible: visible,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10.0),
-                decoration: BoxDecoration(
-                    color: widget.bgColor,
-                    borderRadius: BorderRadius.circular(4.0),
-                    border: border),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        toastState != DepositsToastStates.normal
-                            ? Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                        right: 4.0, top: 2.0),
-                                    child: Icon(
-                                      icon,
-                                      color: widget.iconColor,
-                                      size: 14.0,
-                                    ),
-                                  )
-                                ],
-                              )
-                            : Container(),
-                        Row(
-                          children: [
-                            TextCustom(
-                                text: widget.title,
-                                textFontSize: AppDimens.fontSize14,
-                                color: widget.titleColor,
-                                fontWeight: FontWeight.w500)
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            widget.description != null &&
-                                    widget.description != ""
-                                ? Container(
-                                    constraints: BoxConstraints(
-                                        maxWidth:
-                                            (MediaQuery.of(context).size.width *
-                                                    0.7) -
-                                                2),
-                                    padding: const EdgeInsets.only(
-                                        left: 5.0, right: 7.0),
-                                    child: AutoTextCustom(
-                                        text: "${widget.description}",
-                                        textFontSize: AppDimens.fontSize14,
-                                        color: descriptionColor,
-                                        fontWeight: FontWeight.w400),
-                                  )
-                                : Container()
-                          ],
-                        ),
-                        widget.showCloseButton == true
-                            ? Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(top: 2.0),
-                                    child: Icon(
-                                      Icons.close,
-                                      color: closeIconColor,
-                                      size: 14.0,
-                                    ),
-                                  )
-                                ],
-                              )
-                            : Container(),
-                      ],
-                    )
-                  ],
-                ),
-              )),
+            visible: visible,
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 10.0,
+              ),
+              decoration: BoxDecoration(
+                color: widget.bgColor,
+                borderRadius: BorderRadius.circular(4.0),
+                border: border,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      toastState != DepositsToastStates.normal
+                          ? Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                    right: 4.0,
+                                    top: 2.0,
+                                  ),
+                                  child: Icon(
+                                    icon,
+                                    color: widget.iconColor,
+                                    size: 14.0,
+                                  ),
+                                )
+                              ],
+                            )
+                          : Row(
+                              children: [
+                                Container(),
+                              ],
+                            ),
+                      Row(
+                        children: [
+                          TextCustom(
+                            text: widget.title,
+                            textFontSize: AppDimens.fontSize14,
+                            color: widget.titleColor,
+                            fontWeight: FontWeight.w500,
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          widget.description != null && widget.description != ""
+                              ? Container(
+                                  constraints: BoxConstraints(
+                                    maxWidth: sw,
+                                  ),
+                                  padding: const EdgeInsets.only(
+                                    left: 5.0,
+                                    right: 7.0,
+                                  ),
+                                  child: AutoTextCustom(
+                                    text: "${widget.description}",
+                                    textFontSize: AppDimens.fontSize14,
+                                    color: descriptionColor,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                )
+                              : Container()
+                        ],
+                      ),
+                      widget.showCloseButton == true
+                          ? Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.only(top: 2.0),
+                                  child: Icon(
+                                    Icons.close,
+                                    color: closeIconColor,
+                                    size: 14.0,
+                                  ),
+                                )
+                              ],
+                            )
+                          : Row(
+                              children: [
+                                Container(),
+                              ],
+                            ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
         )
       ],
     );

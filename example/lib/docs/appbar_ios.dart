@@ -15,7 +15,7 @@ class _AppbarIosDocPageState extends State<AppbarIosDocPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       color: AppColors.docBgColor,
       child: Column(
         children: [
@@ -27,14 +27,14 @@ class _AppbarIosDocPageState extends State<AppbarIosDocPage> {
                 DepositsIosAppbarOne(
                     title: "Center Title",
                     onLeftTitleTapped: () {},
-                    backTitle: "Prev. Title",
+                    backTitle: "Prev.",
                     rightTitle: "Right Title",
                     onRightTitleTapped: () {}),
                 const VSpacerWidget(size: 5.0),
                 DepositsIosAppbarTwo(
                     title: "Center Title",
                     onLeftTitleTapped: () {},
-                    backTitle: "Prev. Title",
+                    backTitle: "Prev.",
                     rightTitle: "Right Title",
                     onRightTitleTapped: () {}),
                 const VSpacerWidget(size: 5.0),

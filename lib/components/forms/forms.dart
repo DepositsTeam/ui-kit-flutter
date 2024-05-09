@@ -148,9 +148,11 @@ class DepositsFormFieldState extends State<DepositsFormField> {
             readOnly: widget.readOnly == 'true' ? true : false,
             maxLength: widget.maxChar,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+              height: 1.2,
+            ),
             decoration: InputDecoration(
               counterText: "",
               counterStyle: const TextStyle(
@@ -378,9 +380,11 @@ class DepositsTextAreaState extends State<DepositsTextArea> {
             maxLines: null,
             minLines: 3,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+              height: 1.2,
+            ),
             decoration: InputDecoration(
               hintText: widget.placeholder,
               hintStyle: TextStyle(
@@ -584,9 +588,11 @@ class DepositsSearchInputState extends State<DepositsSearchInput> {
             enabled: formState == DepositsFormStates.disabled ? false : true,
             readOnly: widget.readOnly == 'true' ? true : false,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+              height: 1.2,
+            ),
             decoration: InputDecoration(
               hintText: widget.placeholder,
               hintStyle: TextStyle(
@@ -763,6 +769,7 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
   var suffixMinHeight = 28.0;
   var formFieldContentPadding = const EdgeInsets.fromLTRB(12.0, 0.0, 20.0, 0.0);
   var borderColor = AppColors.neutral300Color;
+  var dividersColor = AppColors.neutral300Color;
 
   var countryCodeColor = AppColors.neutral700Color;
 
@@ -831,6 +838,7 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
         SizedBox(
           height: formFieldheight,
           child: TextFormField(
+            // textAlignVertical: TextAlignVertical.center,
             controller: valueController,
             cursorColor: AppColors.neutral700Color,
             cursorHeight: cursorHeight,
@@ -838,9 +846,11 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
             readOnly: widget.readOnly == 'true' ? true : false,
             maxLength: widget.maxChar,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+              height: 1.2,
+            ),
             decoration: InputDecoration(
               counterText: "",
               counterStyle: const TextStyle(
@@ -879,7 +889,7 @@ class DepositsPhoneInputState extends State<DepositsPhoneInput> {
                         border: Border(
                           right: BorderSide(
                             width: 1.0,
-                            color: borderColor,
+                            color: dividersColor,
                           ),
                         ),
                       ),
@@ -1130,9 +1140,11 @@ class DepositsNumberInputState extends State<DepositsNumberInput> {
             enabled: formState == DepositsFormStates.disabled ? false : true,
             readOnly: widget.readOnly == 'true' ? true : false,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+              height: 1.2,
+            ),
             decoration: InputDecoration(
               hintText: widget.placeholder,
               hintStyle: TextStyle(
@@ -3279,9 +3291,11 @@ class DepositsCardNumberInputState extends State<DepositsCardNumberInput> {
             readOnly: widget.readOnly == 'true' ? true : false,
             maxLength: widget.maxChar,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+              height: 1.2,
+            ),
             decoration: InputDecoration(
               counterText: "",
               counterStyle: const TextStyle(
@@ -3533,9 +3547,11 @@ class DepositsCardExpiryInputState extends State<DepositsCardExpiryInput> {
             readOnly: widget.readOnly == 'true' ? true : false,
             maxLength: widget.maxChar,
             style: TextStyle(
-                color: inputTextColor,
-                fontSize: inputFontSize,
-                fontWeight: inputFontWeight),
+              color: inputTextColor,
+              fontSize: inputFontSize,
+              fontWeight: inputFontWeight,
+              height: 1.2,
+            ),
             decoration: InputDecoration(
               counterText: "",
               counterStyle: const TextStyle(

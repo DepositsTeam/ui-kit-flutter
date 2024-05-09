@@ -6,32 +6,32 @@ class AppAssets {
 
 class AppBankIcons {
   static const bankBankOfAmerica =
-      "https://assets.ondeposits.com/img/bank-logo/bankBOA.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankBOA.svg";
   static const bankCiti =
-      "https://assets.ondeposits.com/img/bank-logo/bankCiti.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankCiti.svg";
   static const bankOO =
-      "https://assets.ondeposits.com/img/bank-logo/bankOO.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankOO.svg";
   static const bankTemplateOne =
-      "https://assets.ondeposits.com/img/bank-logo/bankTemplateOne.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankTemplateOne.svg";
   static const bankTemplateTwo =
-      "https://assets.ondeposits.com/img/bank-logo/bankTemplateTwo.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankTemplateTwo.svg";
   static const bankTemplateThree =
-      "https://assets.ondeposits.com/img/bank-logo/bankTemplateThree.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankTemplateThree.svg";
   static const bankUS =
-      "https://assets.ondeposits.com/img/bank-logo/bankUS.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankUS.svg";
   static const bankWellsFargo =
-      "https://assets.ondeposits.com/img/bank-logo/bankWellFargo.png";
+      "https://assets.ondeposits.com/img/bank-logo/bankWellFargo.svg";
 }
 
 class AppCardIcons {
   static const cardAmericaExpress =
-      "https://assets.ondeposits.com/img/card-brand-logos/cardAE.png";
+      "https://assets.ondeposits.com/img/card-brands/cardAE.svg";
   static const cardDiscover =
-      "https://assets.ondeposits.com/img/card-brand-logos/cardDiscover.png";
+      "https://assets.ondeposits.com/img/card-brands/cardDiscover.svg";
   static const cardJcb =
-      "https://assets.ondeposits.com/img/card-brand-logos/cardJcb.png";
+      "https://assets.ondeposits.com/img/card-brands/cardJcb.svg";
   static const cardMaster =
-      "https://assets.ondeposits.com/img/card-brand-logos/cardMaster.png";
+      "https://assets.ondeposits.com/img/card-brands/cardMaster.svg";
   static const cardVisa =
-      "https://assets.ondeposits.com/img/card-brand-logos/cardVisa.png";
+      "https://assets.ondeposits.com/img/card-brands/cardVisa.svg";
 }

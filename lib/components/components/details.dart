@@ -443,7 +443,7 @@ class DepositsDetailsMobileTableState
             ],
           ),
           const VSpacerWidget(
-            size: 7.0,
+            size: 12.0,
           ),
           Column(
             children: [

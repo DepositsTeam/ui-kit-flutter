@@ -957,6 +957,7 @@ class DepositsCardBorderedTwo extends StatefulWidget {
   final Color borderColor;
   final double rightWidgetTopPadding;
   final bool showImageDecoration;
+  final bool showRightWidget;
   final Function onTapped;
 
   const DepositsCardBorderedTwo({
@@ -971,6 +972,7 @@ class DepositsCardBorderedTwo extends StatefulWidget {
     this.imageColor = AppColors.neutral200Color,
     this.rightWidgetTopPadding = 20.0,
     this.showImageDecoration = false,
+    this.showRightWidget = true,
     required this.image,
     required this.onTapped,
   });
@@ -1011,10 +1013,12 @@ class DepositsCardBorderedTwoState extends State<DepositsCardBorderedTwo> {
         imageColor: widget.imageColor,
         rightWidgetExpandSize: 1,
         rightWidgetTopPadding: widget.rightWidgetTopPadding,
-        rightWidget: Icon(
-          Icons.keyboard_arrow_right,
-          color: widget.arrowColor,
-        ),
+        rightWidget: widget.showRightWidget == false
+            ? Container()
+            : Icon(
+                Icons.keyboard_arrow_right,
+                color: widget.arrowColor,
+              ),
         bgColor: widget.bgColor,
         allowHorinzontalPadding: false,
         showImageDecoration: widget.showImageDecoration,
@@ -1053,6 +1057,7 @@ class DepositsCardBorderedThree extends StatefulWidget {
   final Color topWidgetArrowColor;
   final bool showProcessingWidget;
   final bool showListSection;
+  final bool showRightWidget;
   final double rightWidgetTopPadding;
   final int leftWidgetExpandSize;
   final Function onPressed;
@@ -1086,6 +1091,7 @@ class DepositsCardBorderedThree extends StatefulWidget {
     this.topWidgetArrowColor = AppColors.transparentColor,
     this.showProcessingWidget = true,
     this.showListSection = true,
+    this.showRightWidget = false,
     this.rightWidgetTopPadding = 0.0,
     this.leftWidgetExpandSize = 2,
     required this.onPressed,
@@ -1129,10 +1135,12 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
             image: widget.image,
             imageColor: widget.imageColor,
             rightWidgetExpandSize: 2,
-            rightWidget: Icon(
-              Icons.keyboard_arrow_right,
-              color: widget.topWidgetArrowColor,
-            ),
+            rightWidget: widget.showRightWidget == false
+                ? Container()
+                : Icon(
+                    Icons.keyboard_arrow_right,
+                    color: widget.topWidgetArrowColor,
+                  ),
             rightWidgetTopPadding: widget.rightWidgetTopPadding,
             bgColor: widget.bgColor,
             allowHorinzontalPadding: false,
@@ -1183,7 +1191,7 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
                     },
                   ),
                 ),
-          const VSpacerWidget(size: 8.0),
+          const VSpacerWidget(size: 5.0),
           widget.showProcessingWidget == false
               ? Container()
               : Row(
@@ -1211,7 +1219,7 @@ class DepositsCardBorderedThreeState extends State<DepositsCardBorderedThree> {
                     )
                   ],
                 ),
-          const VSpacerWidget(size: 3.0),
+          const VSpacerWidget(size: 5.0),
           Row(
             children: [
               Expanded(

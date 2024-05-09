@@ -70,11 +70,11 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
       switch (widget.cardBrand) {
         case CardBrand.americaExpress:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/american-express-logo-1712844007.png";
+              "https://assets.ondeposits.com/img/card-brands/cardAE.svg";
           break;
         case CardBrand.bankOfAmerica:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/master-card-icon-1712828073.png";
+              "https://assets.ondeposits.com/img/bank-logo/bankBOA.svg";
           break;
         case CardBrand.chase:
           cardBrandLogo =
@@ -82,19 +82,19 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
           break;
         case CardBrand.citigroup:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/master-card-icon-1712828073.png";
+              "https://assets.ondeposits.com/img/bank-logo/bankCiti.svg";
           break;
         case CardBrand.discover:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/discover-logo-1712844117.png";
+              "https://assets.ondeposits.com/img/card-brands/cardDiscover.svg";
           break;
         case CardBrand.jcb:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/jcb-logo-1712844143.png";
+              "https://assets.ondeposits.com/img/card-brands/cardJcb.svg";
           break;
         case CardBrand.mastercard:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/master-card-icon-1712828073.png";
+              "https://assets.ondeposits.com/img/card-brands/cardMaster.svg";
           break;
         case CardBrand.unionPay:
           cardBrandLogo =
@@ -102,11 +102,11 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
           break;
         case CardBrand.visa:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/visa-logo-1712844181.png";
+              "https://assets.ondeposits.com/img/card-brands/cardVisa.svg";
           break;
         case CardBrand.wellsFargo:
           cardBrandLogo =
-              "https://api.files.ondeposits.com/uploads/images/master-card-icon-1712828073.png";
+              "https://assets.ondeposits.com/img/bank-logo/bankWellFargo.svg";
           break;
         default:
       }
@@ -210,7 +210,8 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
                     children: [
                       Container(
                         constraints: BoxConstraints(
-                            maxWidth: MediaQuery.of(context).size.width * 0.3),
+                          maxWidth: MediaQuery.of(context).size.width * 0.3,
+                        ),
                         child: ImageWidget(
                           imageUrl: widget.programLogo,
                           imageHeight: 17.0,
@@ -229,10 +230,11 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
                   Row(
                     children: [
                       TextCustom(
-                          text: balance,
-                          textFontSize: AppDimens.fontSize27,
-                          color: widget.cardBalanceColor,
-                          fontWeight: FontWeight.w500)
+                        text: balance,
+                        textFontSize: AppDimens.fontSize27,
+                        color: widget.cardBalanceColor,
+                        fontWeight: FontWeight.w500,
+                      )
                     ],
                   ),
                   const VSpacerWidget(size: 0.0),
@@ -264,21 +266,21 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
                   Row(
                     children: [
                       Expanded(
-                        flex: 6,
+                        flex: 7,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TextCustom(
                               text: "Card number",
-                              textFontSize: AppDimens.fontSize14,
+                              textFontSize: AppDimens.fontSize12,
                               color: widget.cardDetailsTitleColor,
                               fontWeight: FontWeight.w500,
                             ),
                             const VSpacerWidget(size: 2.0),
                             TextCustom(
                               text: cardNumber,
-                              textFontSize: AppDimens.fontSize14,
+                              textFontSize: AppDimens.fontSize12,
                               color: widget.cardDetailsColor,
                               fontWeight: FontWeight.w500,
                             ),
@@ -292,14 +294,14 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
                           children: [
                             TextCustom(
                               text: "EXP",
-                              textFontSize: AppDimens.fontSize14,
+                              textFontSize: AppDimens.fontSize12,
                               color: widget.cardDetailsTitleColor,
                               fontWeight: FontWeight.w500,
                             ),
                             const VSpacerWidget(size: 2.0),
                             TextCustom(
                               text: "$expiryMonth / $expiryYear",
-                              textFontSize: AppDimens.fontSize14,
+                              textFontSize: AppDimens.fontSize12,
                               color: widget.cardDetailsColor,
                               fontWeight: FontWeight.w500,
                             ),
@@ -313,14 +315,14 @@ class DepositsCardWidgetUIState extends State<DepositsCardWidgetUI> {
                           children: [
                             TextCustom(
                               text: "CVV",
-                              textFontSize: AppDimens.fontSize14,
+                              textFontSize: AppDimens.fontSize12,
                               color: widget.cardDetailsTitleColor,
                               fontWeight: FontWeight.w500,
                             ),
                             const VSpacerWidget(size: 2.0),
                             TextCustom(
                               text: cvv,
-                              textFontSize: AppDimens.fontSize14,
+                              textFontSize: AppDimens.fontSize12,
                               color: widget.cardDetailsColor,
                               fontWeight: FontWeight.w500,
                             ),

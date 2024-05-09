@@ -412,9 +412,14 @@ class DepositsContentLabelTwoState extends State<DepositsContentLabelTwo> {
         widget.onTapped();
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(
+          vertical: 10.0,
+          horizontal: 10.0,
+        ),
         decoration: BoxDecoration(
-            color: widget.bgColor, borderRadius: BorderRadius.circular(6.0)),
+          color: widget.bgColor,
+          borderRadius: BorderRadius.circular(6.0),
+        ),
         child: Column(
           children: [
             Row(
@@ -457,9 +462,10 @@ class DepositsContentLabelTwoState extends State<DepositsContentLabelTwo> {
                 Expanded(
                   flex: 2,
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        padding: const EdgeInsets.only(right: 5.0),
+                        padding: const EdgeInsets.only(right: 0.0),
                         child: DepositsSubheadText(
                           text: widget.actionText,
                           color: widget.actionTextColor,

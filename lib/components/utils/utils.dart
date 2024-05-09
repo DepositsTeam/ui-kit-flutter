@@ -122,12 +122,14 @@ class ImageWidget extends StatelessWidget {
             ),
             child: const CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Container(
-            padding: const EdgeInsets.all(
-              2.0,
-            ),
-            child: const Icon(Icons.error),
-          ),
+          errorWidget: (context, url, error) {
+            return Container(
+              padding: const EdgeInsets.all(
+                2.0,
+              ),
+              child: const Icon(Icons.error),
+            );
+          },
         );
       } else {
         // widget = Image.network(

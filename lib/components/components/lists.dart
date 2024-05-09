@@ -247,6 +247,8 @@ class DepositsListCardAccountMain extends StatefulWidget {
   final Widget rightWidget;
   final int rightWidgetExpandSize;
   final int leftWidgetSize;
+  final double maxHeight;
+  final double maxWidth;
   final bool allowHorinzontalPadding;
   final Function onTapped;
 
@@ -261,6 +263,8 @@ class DepositsListCardAccountMain extends StatefulWidget {
     required this.rightWidget,
     this.rightWidgetExpandSize = 6,
     this.leftWidgetSize = 2,
+    this.maxHeight = 42.0,
+    this.maxWidth = 42.0,
     this.allowHorinzontalPadding = true,
     required this.onTapped,
   });
@@ -314,14 +318,16 @@ class DepositsListCardAccountMainState
                               : 5.0,
                         ),
                         constraints: BoxConstraints(
-                          maxHeight: 38.w,
-                          maxWidth: 38.w,
+                          maxHeight: widget.maxHeight,
+                          maxWidth: widget.maxWidth,
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40.0),
                         ),
                         child: Center(
-                          child: ImageWidget(imageUrl: widget.image),
+                          child: ImageWidget(
+                            imageUrl: widget.image,
+                          ),
                         ),
                       )
                     ],
@@ -336,7 +342,7 @@ class DepositsListCardAccountMainState
                       Row(
                         children: [
                           Container(
-                            padding: const EdgeInsets.only(bottom: 5.0),
+                            padding: const EdgeInsets.only(bottom: 1.0),
                             child: DepositsH5Text(
                               text: widget.title,
                               color: widget.titleColor,
@@ -1221,7 +1227,7 @@ class DepositsListChecklistTwoState extends State<DepositsListChecklistTwo> {
                       padding: const EdgeInsets.all(1.0),
                       margin: const EdgeInsets.only(
                         right: 6.0,
-                        bottom: 5.0,
+                        bottom: 10.0,
                         top: 4.0,
                       ),
                       decoration: BoxDecoration(
@@ -1239,6 +1245,9 @@ class DepositsListChecklistTwoState extends State<DepositsListChecklistTwo> {
                     Container(
                       constraints: BoxConstraints(
                         maxWidth: MediaQuery.of(context).size.width * 0.75,
+                      ),
+                      padding: EdgeInsets.only(
+                        bottom: 7.0,
                       ),
                       child: DepositsBodyText(
                         text: widget.items[i].title,
@@ -1265,7 +1274,7 @@ class DepositsListChecklistTwoState extends State<DepositsListChecklistTwo> {
               ),
             ],
           ),
-          const VSpacerWidget(size: 5.0),
+          const VSpacerWidget(size: 10.0),
           Row(
             children: [
               Expanded(

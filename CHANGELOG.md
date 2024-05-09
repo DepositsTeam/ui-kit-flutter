@@ -38,3 +38,9 @@
 
 * make small screen adjustments in components
 * add id to some models
+
+## 0.0.9
+
+* make small screen adjustments in components
+* change bank icons to SVG
+* change card icons to SVG
